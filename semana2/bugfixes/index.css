@@ -55,6 +55,9 @@ div>p:first-child {
     border-radius: 5px;
     font-size: 20px;
     color: white;
+    cursor: pointer;
+    border-style: none;
+    outline: none;
 }
 
 .botao-amarelo:hover {
@@ -119,8 +122,11 @@ div:last-child {
     text-align: center;
 }
 
+
+
 table {
     width: 60%;
+    margin: 0 auto;
 }
 
 table img {
@@ -133,6 +139,9 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+    cursor: pointer;
+    border-style: none;
+    outline: none;
 }
 
 .container-do-search {
@@ -146,15 +155,26 @@ td button {
     outline: none;
 }
 
+.btn-back {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 100px;
+}
+
 #back-button {
     background-color: white;
     width: 100px;
-    height: 20px;
+    height: 25px;
     border: 1px solid black;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 16px;
     color: black;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 #back-button:focus {
