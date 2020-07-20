@@ -79,9 +79,9 @@ div img {
     background-color: #e7eb90;
 }
 
-#container-para-comprar>p {
+.div-começar {
     color: #c44f00;
-    padding: 100px 0;
+    padding: 40px 0;
     font-size: 60px;
 }
 
@@ -114,7 +114,6 @@ td button {
     height: 100px;
 }
 
-
 #back-button {
     background-color: white;
     width: 100px;
@@ -123,6 +122,7 @@ td button {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    padding: 10px;
 }
 
 #back-button:hover {
