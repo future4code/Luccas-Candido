@@ -26,6 +26,10 @@ input {
     
 }
 
+.container-do-search img {
+    max-width: 50px;
+}
+
 
 button:hover {
     background-color: #f1f1f1;
@@ -58,7 +62,7 @@ div>p:first-child {
 }
 
 .container {
-    height: 500px;
+    height: 400px;
     text-align: center;
 }
 
@@ -76,17 +80,21 @@ div>p:first-child {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
-    padding-top: 30px;
+    padding-top: 100px;
 }
 
 #container-de-descricao>ol {
-    padding: 15px 0px;
+    padding: 15px 530px;
 }
 
 #p-descricao {
     display: inline-block;
-    width: 180px;
+    width: 200px;
     line-height: 24px;
+}
+
+#lista {
+    list-style: decimal;
 }
 
 #container-para-comprar {
@@ -95,7 +103,7 @@ div>p:first-child {
 
 .div-começar {
     color: #c44f00;
-    padding: 40px 0;
+    padding: 80px 0;
     font-size: 60px;
 }
 
