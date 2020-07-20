@@ -76,6 +76,12 @@ div img {
     padding: 15px 0px;
 }
 
+#p-descricao {
+    display: inline-block;
+    width: 180px;
+    line-height: 24px;
+}
+
 #container-para-comprar {
     background-color: #e7eb90;
 }
