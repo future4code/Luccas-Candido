@@ -19,6 +19,12 @@ h2 {
 input {
     height: 20px;
     width: 500px;
+    
+}
+
+
+button:hover {
+    background-color: #f1f1f1;
 }
 
 button:focus {
@@ -133,8 +139,12 @@ td button {
     padding: 10px;
 }
 
+#back-button:focus {
+    color: white;
+}
+
 #back-button:hover {
-    background-color: #635a3d
+    background-color: #f1f1f1
 }
 
 .itens-alinhados {
