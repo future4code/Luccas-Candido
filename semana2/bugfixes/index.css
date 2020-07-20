@@ -108,6 +108,10 @@ table {
     width: 60%;
 }
 
+table img {
+    max-width: 60px;
+}
+
 td button {
     background-color: #fadf63;
     width: 150px;
