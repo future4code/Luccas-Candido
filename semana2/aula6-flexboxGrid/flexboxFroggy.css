@@ -1,0 +1,194 @@
+/* Resposta 1 */
+
+#pond {
+    display: flex;
+  justify-content: flex-end;
+  }
+
+/* Resposta 2 */
+
+#pond {
+    display: flex;
+  justify-content: center;
+  }
+
+/* Resposta 3 */
+
+#pond {
+    display: flex;
+  justify-content: space-around;
+  }
+
+/* Resposta 4 */
+
+#pond {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Resposta 5 */
+
+#pond {
+    display: flex;
+  align-items: flex-end;
+  }
+
+/* Resposta 6 */
+
+#pond {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+/* Resposta 7 */
+
+#pond {
+    display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  }
+
+/* Resposta 8 */
+
+#pond {
+    display: flex;
+  flex-direction: row-reverse;
+  }
+
+/* Respsota 9 */
+
+#pond {
+    display: flex;
+  flex-direction: column;
+  }
+
+/* Resposta 10 */ 
+
+#pond {
+    display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  }
+
+/* Resposta 11 */
+
+#pond {
+    display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  }
+
+/* Resposta 12 */
+
+#pond {
+    display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  }
+
+/* Resposta 13 */
+
+#pond {
+    display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: flex-end;
+  }
+
+/* Resposta 14 */
+pond {
+    display: flex;
+  }
+  
+  .yellow {
+  order: 2;
+  }
+
+/* Resposta 15 */
+#pond {
+    display: flex;
+  }
+  
+  .red {
+  order: -2;
+  }
+
+/* Resposta 16 */
+
+#pond {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .yellow {
+  align-self: flex-end;
+  }
+
+/* Resposta 17 */
+
+#pond {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .yellow {
+  order: 2;
+  align-self: flex-end;
+  }
+
+/* Resposta 18 */
+
+#pond {
+    display: flex;
+  flex-wrap: wrap;
+  }
+
+/* Resposta 19 */
+
+#pond {
+    display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  }
+
+/* Resposta 20 */
+
+#pond {
+    display: flex;
+  flex-flow: column wrap;
+  }
+
+/* Resposta 21 */
+
+#pond {
+    display: flex;
+    flex-wrap: wrap;
+  align-content: flex-start;
+  }
+
+/* Resposta 22 */
+
+#pond {
+    display: flex;
+    flex-wrap: wrap;
+  align-content: flex-end;
+  }
+
+/* Resposta 23 */
+
+#pond {
+    display: flex;
+    flex-wrap: wrap;
+  flex-direction: column-reverse;
+  align-content: center;
+  }
+
+/* Resposta 24 */
+
+#pond {
+    flex-wrap: wrap-reverse;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-content: space-between;
+}
