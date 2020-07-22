@@ -13,6 +13,7 @@ div {
     background-color: red;
     height: 90px;
     max-width: 100%;
+    margin: 0 10px;
 }
 /* Container 1 */
 
@@ -44,7 +45,7 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0px;
+    margin: 20px 10px;
     min-width: 20%;
 
 }
@@ -59,7 +60,7 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0px;
+    margin: 20px 10px;
 }
 
 /* Container 3 */
@@ -79,12 +80,12 @@ div {
 
 @media screen and (max-width: 800px) {
 
-    .blue-block, .yellow-block, .green-block, .white-block {
+    .blue-block, .yellow-block, .green-block, .white-block,.black-block {
         min-width: 40%;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .container-flex {
         flex-direction: column;
     }
