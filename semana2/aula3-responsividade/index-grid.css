@@ -1,0 +1,125 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    border: 1px solid black;
+}
+
+#first-block {
+    background-color: red;
+    height: 90px;
+    max-width: 100%;
+    
+}
+/* Container 1 */
+
+.top-container {
+    display: grid;
+    border-style: none;
+    justify-items: center;
+    align-items: center;
+    grid-template: 1fr / 1fr 1fr 1fr;
+}
+
+#middle-container {
+    display: grid;
+    border-style: none;
+    justify-items: center;
+    align-items: center;
+    grid-template: 1fr / 1fr 1fr
+}
+
+.blue-block {
+    background-color: blue;
+
+    
+}
+
+.yellow-block {
+    background-color: yellow;
+
+ 
+}
+
+.green-block {
+    background-color: green;
+
+    
+}
+
+.blue-block, .yellow-block, .green-block {
+    height: 30vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin: 20px 0px;
+    width: 30vw;
+
+}
+
+/* Container 2 */
+
+.black-block {
+    background-color: black;
+    color: white;
+    height: 50vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 48vw;
+    margin: 20px 0px;
+    
+    
+}
+
+/* Container 3 */
+
+.white-block {
+    background-color: white;
+    height: 30vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 30vw;
+    margin: 20px 0px;
+
+
+
+}
+
+/* Medias */
+
+@media screen and (max-width: 800px) {
+    .top-container {
+        grid-template: 1fr 1fr / 1fr 1fr;
+    }
+    .blue-block, .yellow-block, .white-block {
+        width: 40vw;
+    }
+    .green-block, #onze {
+        grid-column-end: span 2;
+        width: 90vw;
+    }
+
+    .black-block {
+        width: 40vw;
+    }
+
+}
+@media screen and (max-width: 600px) {
+    .top-container {
+        grid-template-columns: 1fr;
+    }
+    #middle-container {
+        grid-template-columns: 1fr;
+    }
+    .blue-block, .yellow-block, .white-block, .black-block {
+        grid-column-end: span 2;
+        width: 90vw;
+    }
+    
+}
