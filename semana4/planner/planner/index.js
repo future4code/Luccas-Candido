@@ -1,3 +1,11 @@
+function taskRemover() {
+    const tasks = document.getElementsByTagName("li")
+    for(let i = tasks.length -1; i >= 0; i-- ) {
+        tasks[i].remove()
+    }
+}
+
+
 function createTask(){
     const taskInput = document.getElementById("tarefa")
     let inputValue = taskInput.value
@@ -61,9 +69,3 @@ function risca(event) {
     tarefaClicada.classList.toggle("tarefa-riscada")
 }
 
-function taskRemover() {
-    const tasks = document.getElementsByTagName("ul")
-    for(let i = tasks.length -1; i >= 0; i-- ) {
-        tasks[i].remove()
-    }
-}
