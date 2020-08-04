@@ -23,3 +23,11 @@ section {
     width: 14%;
     padding: 5px;
 }
+
+.tarefa-adicionada {
+    cursor: pointer;
+}
+
+.tarefa-riscada {
+    text-decoration: line-through;
+}

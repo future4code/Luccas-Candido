@@ -12,7 +12,7 @@
     <header>
         <form action="">
             <label for="tarefa">Nova tarefa:</label>
-            <input type="text" id="tarefa">
+            <input type="text" id="tarefa" required>
             <select name="dias-semana" id="dias-semana">
                 <option value="domingo">Domingo</option>
                 <option value="segunda">Segunda-feira</option>
@@ -25,42 +25,43 @@
         </form>
 
         <button onclick="createTask()">Criar tarefa</button>
+        <button onclick="taskRemover()">Deletar as tarefas</button>
         
     </header>
     <section>
         <div class="semana">
             <h3>Domingo</h3>
-            <div id="domingo"></div>
+            <ul id="domingo"></ul>
         </div>
 
         <div class="semana">
             <h3>Segunda-feira</h3>
-            <div id="segunda"></div>
+            <ul id="segunda"></ul>
         </div>
 
         <div class="semana">
             <h3>Terça-feira</h3>
-            <div id="terca"></div>
+            <ul id="terca"></ul>
         </div>
     
         <div class="semana">
             <h3>Quarta-feira</h3>
-            <div id="quarta"></div>
+            <ul id="quarta"></ul>
         </div>
     
         <div class="semana">
             <h3>Quinta-feira</h3>
-            <div id="quinta"></div>
+            <ul id="quinta"></ul>
         </div>
 
         <div class="semana">                    
             <h3>Sexta-feira</h3>               
-            <div id="sexta"></div>
+            <ul id="sexta"></ul>
         </div>
 
         <div class="semana">
             <h3>Sábado</h3>
-            <div id="sabado"></div>
+            <ul id="sabado"></ul>
         </div>
     </section>
     
