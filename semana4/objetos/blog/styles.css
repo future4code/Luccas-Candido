@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 #formulario {
@@ -53,4 +54,22 @@ button {
 #container-de-posts {
     margin: 10px;
     border-top: 3px double rgb(77, 77, 77);
+}
+
+#headerBlog {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#headerBlog h1 {
+    padding: 1em 0;
+}
+
+#headerBlog a {
+    color: darkslategray;
+}
+
+#headerBlog a:hover {
+    text-decoration: underline;
 }
