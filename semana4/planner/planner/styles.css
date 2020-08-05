@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    justify-content: space-evenly;
+    height: 90vh;
+}
+
+
+.semana {
+    border: 1px dotted rgb(53, 53, 53);
+    width: 14%;
+    padding: 5px;
+}
+
+.tarefa-adicionada {
+    cursor: pointer;
+}
+
+.tarefa-riscada {
+    text-decoration: line-through;
+}
+
+
+@media only screen and (max-width: 375px) {
+    input {
+        max-width: 20vw;
+    }
+
+    select {
+        max-width: 10vw;
+        margin-right: 1em;
+    }
+
+    button {
+        display: flex;
+        max-width: 10vw;
+        font-size: 0.5rem;
+        margin-right: 1em;
+    }
+
+    section {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    section h3 {
+        font-size: 1rem;
+    }
+
+    .semana {
+       width: 80%;
+    }
+}
