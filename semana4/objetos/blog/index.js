@@ -1,5 +1,6 @@
 const postArray = []
 
+
 function botaoRealizarPost() {
     // Pegando os elementos
     const titulo = document.getElementById("titulo-post")
@@ -23,12 +24,8 @@ function botaoRealizarPost() {
 
     // Armazenando o objeto de infos em um array de posts
     postArray.push(infosPost)
-
-    // Inserindo o post no html.
-    const container = document.getElementById("container-de-posts")
-    
-    container.innerHTML += `<h1>${infosPost.titulo}</h1><br><p>${infosPost.conteudo}</p><br><p class="autorPost">Autor do post: ${infosPost.autor}</p>
-    <p><img src=${infosPost.img}></p>`
+    // Armazenando os dados do meu array
+    sessionStorage.postArray = JSON.stringify(postArray)
 
     // Limpando os campos
     titulo.value = ""
