@@ -1,4 +1,4 @@
-const postArray = []
+const postArray = [] 
 
 
 function botaoRealizarPost() {
