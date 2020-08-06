@@ -2,6 +2,7 @@
 const arrayDespesas = []
 // Utilizando DOM pra pegar o container.
 const sectionDespesa = document.getElementById("sectionDespesas")
+const sectionFiltros = document.getElementById("sectionFiltros")
 
 
 // Função que salva os dados dos objetos no Array.
@@ -102,9 +103,6 @@ function cadastrarDespesa() {
 
 }
 
-
-
-
 // Função de filtrar despesas.
 function filtrarDespesa() {
 
@@ -123,7 +121,7 @@ function filtrarDespesa() {
 
     // Jogando na tela os valores filtrados.
     filtroDeValores.forEach((elemento) => {
-        sectionDespesa.innerHTML += `<li>Valor: ${elemento.valor}</li>
+        sectionFiltros.innerHTML += `<li>Valor: ${elemento.valor}</li>
         <li>Descrição: ${elemento.descricao}</li>
         <li>Tipo de Despesa: ${elemento.tipoDespesa}</li>`
     })
@@ -132,6 +130,12 @@ function filtrarDespesa() {
     event.preventDefault()
 }
 
+
+function limparFiltros() {
+    sectionFiltros.innerHTML = ""
+    event.preventDefault()
+
+}
 
 
 
