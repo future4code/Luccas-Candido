@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+#formulario {
+    border: 1px dotted black;
+    padding: 10px;
+    width: 70vw;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.autorPost {
+    font-size: 10px;
+}
+
+#container-de-posts {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+label {
+    width: 10%;
+    text-align: right;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+input, textarea {
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100px;
+    margin: 0 auto;
+    padding: 2px;
+    border-radius: 5px;
+    border: 1px solid rgb(77, 77, 77);
+}
+
+#container-de-posts {
+    margin: 10px;
+    border-top: 3px double rgb(77, 77, 77);
+}
+
+#headerBlog {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#headerBlog h1 {
+    padding: 1em 0;
+}
+
+#headerBlog a {
+    color: darkslategray;
+}
+
+#headerBlog a:hover {
+    text-decoration: underline;
+}
+
+
+@media only screen and (max-width: 375px) {
+    #formulario {
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        display: flex;
+        justify-content: center;
+        margin-left: 0.5em;
+    }
+
+    input {
+        height: 5vh;
+    }
+
+    #container-de-posts {
+        padding-top: 2em;
+    }
+}
