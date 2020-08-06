@@ -83,13 +83,26 @@ function cadastrarDespesa() {
     })
     
 
+
+    // Declarando variável para realizar a soma dos valores.
+    let soma = 0
+
+
     // Laço que percorre o array de objetos e me retorna apenas o valor da despesa, executando uma soma.
     arrayDespesas.forEach((elemento) => {
-        const extrato = document.getElementById("extrato")
-        let soma = 0
-        extrato.innerHTML += `<p>${parseInt(soma + elemento.valor)}</p>`;
-    })
+
+        // Pegando o parágrafo
+        const paragrafoExtrato = document.getElementById("paragrafoExtrato")
+
+        // Fazendo a soma dos valores.
+        soma += Number(elemento.valor)
+
+        paragrafoExtrato.innerHTML = `R$${soma}`
+    })    
+
 }
+
+
 
 
 // Função de filtrar despesas.
@@ -118,6 +131,7 @@ function filtrarDespesa() {
 
     event.preventDefault()
 }
+
 
 
 
