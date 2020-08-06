@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Controle de Despesas</title>
+</head>
+<body>
+    <section id="sectionDivs">
+        <div id="controladorDespesas">
+            <form action="" id="formulario">
+                <h1>Controlador de Despesas</h1>
+                <h3>Cadastrar despesas</h3>
+                <label for="valor">Valor</label>
+                <input type="number" name="" id="valor">
+
+                <label for="tipoDeDespesa">Tipo: </label>
+                <select name="despesas" id="despesas">
+                    <option value="despesaCasa">Despesas de Casa</option>
+                    <option value="despesaAlimentacao">Despesas com Alimentação</option>
+                    <option value="despesaTransporte">Despesas com Transporte</option>
+                </select>
+                
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" id="descricao">
+
+                <button onclick="cadastrarDespesa()">Cadastrar Despesa</button>
+            </form>
+
+        </div>
+        
+
+        <div id="detalhesDespesas">
+            <form action="" id="formularioDetalhes">
+                <h1>Despesas Detalhadas</h1>
+                <p>Tipo: (Casa, Alimentação ou Transporte)</p>
+
+                <label for="valorMin">Valor Mínimo:</label>
+                <input class="inputDetalhes" type="number" name="" id="valorMin">
+
+                <label for="valorMax">Valor Máximo:</label>
+                <input type="number" class="inputDetalhes" name="" id="valorMax"><br>
+
+                <button class="inputDetalhes" onclick="filtrarDespesa()">Filtrar</button>
+                <button class="inputDetalhes">Limpar Filtros</button>
+            </form>
+
+
+        </div>
+
+        <div id="extrato">
+                <h1>Extrato</h1>
+                <h3>Valor total:</h3>
+                
+        </div>
+
+    </section>
+
+    <section id="sectionDespesas">
+
+    </section>
+
+
+</body>
+</html>
