@@ -228,7 +228,7 @@ console.log(`Venha assistir ao filme ${filmeFavorito.titulo}, de ${filmeFavorito
 `Venha assistir ao filme NOME DO FILME, de ANO, dirigido por DIRETOR e estrelado por ATOR 1, ATRIZ 2, ATOR n`. A lista de atores/atrizes deve ser impressa inteira, independente do tamanho da lista.
  */
 
- const pessoaQualquer = {
+/*  const pessoaQualquer = {
      nome: 'Luccas',
      idade: 24,
      email: 'xxx@gmail.com',
@@ -244,4 +244,82 @@ function anonimizarPessoa() {
     
 }
 
-console.log(anonimizarPessoa())
+console.log(anonimizarPessoa()) */
+
+
+// ---------- FUNÇÕES DE ARRAY -----------
+
+/* const array = [
+	{ nome: "Pedro", idade: 20 },
+	{ nome: "João", idade: 10 },
+	{ nome: "Paula", idade: 12 },
+	{ nome: "Artur", idade: 89 } 
+] */
+
+// a)
+/* 
+const idade = array.filter((elemento) => {
+    return elemento.idade >= 20
+})
+// b)
+const menorIdade = array.filter((elemento) => {
+    return elemento.idade < 20
+})
+
+ */
+
+//  2
+
+const exemploArray = [1, 2, 3, 4, 5, 6]
+
+/* function multiplicados(array) {
+
+    const arrayNovo = array.map((elemento) => {
+        return elemento * 2
+    })
+
+    return arrayNovo
+}
+
+
+console.log(multiplicados(exemploArray))
+ */
+
+
+//  b)
+
+/* function multiplicados(array) {
+
+    const arrayNovo = array.map((elemento) => {
+        return elemento * 3
+    })
+
+    return arrayNovo
+
+}
+
+console.log(multiplicados(exemploArray)) */
+
+// c
+
+/* function parOuImpar(array) {
+
+    const arrayNovo = array.map((elemento) => {
+        if(elemento % 2 === 0) {
+            return `O número ${elemento} é par!`
+        } 
+
+        if(elemento % 2 !== 0) {
+            return `O número ${elemento} é impar!`
+        }
+    })
+
+    return arrayNovo
+
+}
+
+console.log(parOuImpar(exemploArray))
+
+ */
+
+//  3
