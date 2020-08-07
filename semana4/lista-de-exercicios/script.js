@@ -174,7 +174,7 @@ segundoMaior(arrayNumeros) */
 
 
 
-const naoNomeada = () => {
+/* const naoNomeada = () => {
     alert("Hello Future4")
 }
 
@@ -184,8 +184,64 @@ function alertaNaTela() {
 
 alertaNaTela()
 
+ */
+
+//  1. Explique com as suas palavras o que são e quando podemos/devemos utilizar arrays e objetos.
+
+/* Podemos utilizar os arrays para armazenar objetos com propriedades e valores diferentes, facilitando acessos aos elementos que precisamos manipular.  */
 
 
+/* 2. Crie uma função chamada criaRetangulo que recebe como parâmetros dois lados (lado1 e lado2) e retorna um objeto com 4 informações: largura (lado1), altura (lado2), perímetro (2 * (lado1 + lado2)) e área (lado1 * lado2). */
 
 
+/* function criaRetangulo(lado1, lado2) {
 
+    const retangulo = {
+        largura: lado1,
+        altura: lado2,
+        perimetro: 2 * (lado1 + lado2),
+        area: lado1 * lado2
+    }
+
+    return retangulo
+}
+
+
+ */
+
+ /* 3. Crie um objeto para representar seu filme favorito. Ele deve ter as seguintes propriedades: título, ano, diretor e atores/atrizes (lista com pelo menos 2 atores/atrizes). Imprima na tela a seguinte string, baseada nos valores do objeto:
+`Venha assistir ao filme NOME DO FILME, de ANO, dirigido por DIRETOR e estrelado por ATOR 1, ATRIZ 2, ATOR n`. A lista de atores/atrizes deve ser impressa inteira, independente do tamanho da lista.*/
+
+
+/* const filmeFavorito = {
+    titulo: 'Clube da Luta',
+    ano: 1999,
+    diretor: 'David Fincher',
+    atores: ['Brad Pitt', ' Edward Norton']
+
+}
+
+
+console.log(`Venha assistir ao filme ${filmeFavorito.titulo}, de ${filmeFavorito.ano}, dirigido por ${filmeFavorito.diretor} e estrelado por ${filmeFavorito.atores}`) */
+
+/* // 4.3. Crie um objeto para representar seu filme favorito. Ele deve ter as seguintes propriedades: título, ano, diretor e atores/atrizes (lista com pelo menos 2 atores/atrizes). Imprima na tela a seguinte string, baseada nos valores do objeto:
+`Venha assistir ao filme NOME DO FILME, de ANO, dirigido por DIRETOR e estrelado por ATOR 1, ATRIZ 2, ATOR n`. A lista de atores/atrizes deve ser impressa inteira, independente do tamanho da lista.
+ */
+
+ const pessoaQualquer = {
+     nome: 'Luccas',
+     idade: 24,
+     email: 'xxx@gmail.com',
+     endereco: 'Rua tal, numero tal'
+ }
+
+function anonimizarPessoa() {
+    return pessoa2 = {
+    ...pessoaQualquer,
+    nome: 'ANONIMO'
+    }
+
+    
+}
+
+console.log(anonimizarPessoa())
