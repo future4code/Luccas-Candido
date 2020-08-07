@@ -128,3 +128,64 @@ iii. determine a diferença entre eles (o resultado deve ser um número positivo
 }
 
 console.log(doisNumeros(5, 10)) */
+
+// ---------- FUNÇÕES -----------
+
+// 1. Escreva uma função que receba um `array` de números e imprima na tela o segundo maior e o segundo menor número. Em seguida, invoque essa função. (Não é permitido usar funções de ordenação de vetores.)
+
+/* const arrayNumeros = [20, 5, 7, 24, 30, 22, 10, 80, 75, 88, 98, 15]
+
+function segundoMaior(array) {
+
+    let maior = array[0]
+    let menor = array[0]
+    let maiorSegundo;
+
+    // Meu deus não sei o que fiz mas deu certo. Utilizei
+    // dois métodos pra dar uma variada :D
+
+    array.forEach((elemento, index) => {
+
+        if(elemento < menor) {
+            menor = elemento
+        }
+
+        array.splice(menor[index], 1)
+        
+    })
+
+    for(let i = 0; i < array.length; i++) {
+
+        if(array[i] > maior) {
+            maior = array[i]
+            array.splice(maior[i], 1)
+            maiorSegundo = maior
+        }
+
+    }
+
+    console.log(`O segundo maior número do array é ${maiorSegundo}`)
+    console.log(`O segundo menor número do array é ${menor}`)
+
+
+}
+
+segundoMaior(arrayNumeros) */
+
+
+
+const naoNomeada = () => {
+    alert("Hello Future4")
+}
+
+function alertaNaTela() {
+    naoNomeada()
+}
+
+alertaNaTela()
+
+
+
+
+
+
