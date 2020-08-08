@@ -133,44 +133,57 @@ console.log(doisNumeros(5, 10)) */
 
 // 1. Escreva uma função que receba um `array` de números e imprima na tela o segundo maior e o segundo menor número. Em seguida, invoque essa função. (Não é permitido usar funções de ordenação de vetores.)
 
-/* const arrayNumeros = [20, 5, 7, 24, 30, 22, 10, 80, 75, 88, 98, 15]
+const arrayNumeros = [55, 70, 35, 44, 27, 69, 102, 46]
 
 function segundoMaior(array) {
 
     let maior = array[0]
     let menor = array[0]
-    let maiorSegundo;
-
-    // Meu deus não sei o que fiz mas deu certo. Utilizei
-    // dois métodos pra dar uma variada :D
-
-    array.forEach((elemento, index) => {
-
-        if(elemento < menor) {
-            menor = elemento
-        }
-
-        array.splice(menor[index], 1)
-        
-    })
 
     for(let i = 0; i < array.length; i++) {
-
         if(array[i] > maior) {
             maior = array[i]
-            array.splice(maior[i], 1)
-            maiorSegundo = maior
         }
-
     }
 
-    console.log(`O segundo maior número do array é ${maiorSegundo}`)
-    console.log(`O segundo menor número do array é ${menor}`)
+    const novoArray = array.filter((elemento) => {
+        return elemento !== maior
+    })
+
+    let segundoMaior = novoArray[0]
+
+    novoArray.forEach((elemento) => {
+        if(elemento > segundoMaior) {
+            segundoMaior = elemento
+        }
+    })
+    
+    console.log(`O segundo maior número do array é ${segundoMaior}`)
+    
+    for(let i = 0; i < array.length; i++) {
+        if(array[i] < menor) {
+            menor = array[i]
+        }
+    }
+
+    const novoArray2 = novoArray.filter((elemento) => {
+        return elemento !== menor
+    })
+
+    let segundoMenor = novoArray2[0]
+
+    novoArray2.forEach((elemento) => {
+        if(elemento < segundoMenor) {
+            segundoMenor = elemento
+        }
+    })
+
+    console.log(`O segundo maior número do array é ${segundoMenor}`)
+
+}  
 
 
-}
-
-segundoMaior(arrayNumeros) */
+segundoMaior(arrayNumeros)
 
 
 
@@ -270,7 +283,7 @@ const menorIdade = array.filter((elemento) => {
 
 //  2
 
-const exemploArray = [1, 2, 3, 4, 5, 6]
+// const exemploArray = [1, 2, 3, 4, 5, 6]
 
 /* function multiplicados(array) {
 
@@ -323,3 +336,113 @@ console.log(parOuImpar(exemploArray))
  */
 
 //  3
+
+/* const pessoas = [
+	{ nome: "Paula", idade: 12, altura: 1.8},
+	{ nome: "João", idade: 20, altura: 1.3},
+	{ nome: "Pedro", idade: 15, altura: 1.9},
+	{ nome: "Luciano", idade: 22, altura: 1.8},
+	{ nome: "Artur", idade: 10, altura: 1.2},
+	{ nome: "Soter", idade: 70, altura: 1.9}
+] */
+
+// a)
+
+/* const pessoasPermitidas = pessoas.filter((elemento) => {
+    return elemento.altura >= 1.5 && elemento.idade >= 14 && elemento.idade < 60
+})
+ */
+
+// b)
+/* const pessoasNaoPermitidas = pessoas.filter((elemento) => {
+    return elemento.altura < 1.5 || elemento.idade < 15 || elemento.idade > 60
+})
+
+console.log(pessoasNaoPermitidas) */
+
+// 4
+
+/* const consultas = [
+	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+]
+ */
+/* const emails = consultas.map((elemento) => {
+
+    if(elemento.cancelada === false) {
+
+       if(elemento.genero === "masculino") {
+
+           return `Olá, Sr. ${elemento.nome}. Estamos enviando esta mensagem para
+           lembrá-lo da sua consulta no dia ${elemento.dataDaConsulta}. Por favor, acuse
+           o recebimento deste e-mail.`
+       } 
+       
+       if (elemento.genero === "feminino")
+
+            return `Olá, Sra. ${elemento.nome}. Estamos enviando esta mensagem para
+            lembrá-la da sua consulta no dia ${elemento.dataDaConsulta}. Por favor, acuse
+            o recebimento deste e-mail.`
+       }
+
+       if(elemento.cancelada) {
+           
+           if(elemento.genero === "masculino") {
+       
+               return `Olá, Sr. ${elemento.nome}. Infelizmente, sua consulta marcada
+               para o dia ${elemento.dataDaConsulta} foi cancelada. Se quiser, pode entrar em 
+               contato conosco para remarcá-la`
+           }
+       
+           if(elemento.genero === "feminino") {
+       
+               return `Olá, Sra. ${elemento.nome}. Infelizmente, sua consulta marcada
+               para o dia ${elemento.dataDaConsulta} foi cancelada. Se quiser, pode entrar em 
+               contato conosco para remarcá-la`
+       
+           }
+       }
+       
+       
+       })    
+
+
+
+    
+
+console.log(emails)
+ */
+
+// 5
+/* 
+const contas = [
+	{ cliente: "João", saldoTotal: 1000, compras: [100, 200, 300] },
+	{ cliente: "Paula", saldoTotal: 7500, compras: [200, 1040] },
+	{ cliente: "Pedro", saldoTotal: 10000, compras: [5140, 6100, 100, 2000] },
+	{ cliente: "Luciano", saldoTotal: 100, compras: [100, 200, 1700] },
+	{ cliente: "Artur", saldoTotal: 1800, compras: [200, 300] },
+	{ cliente: "Soter", saldoTotal: 1200, compras: [] }
+]
+
+
+const contasAtualizadas = contas.forEach((elemento) => {
+
+    // Declarando variável para a soma dos elmentos no array elemento.compras
+    let soma = 0
+
+    // Percorrendo o array para somar os elementos do array.
+    elemento.compras.forEach((elemento) => {
+        soma += elemento
+    }) 
+
+    // Atualizando o Saldo total do array contas.
+    elemento.saldoTotal = elemento.saldoTotal - soma
+    
+    
+}
+)
+
+console.log(contas)
+ */
