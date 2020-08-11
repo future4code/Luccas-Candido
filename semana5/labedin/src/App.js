@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
-import CardPequeno from './components/CardPequeno/CardPequeno'
+import CardPequeno from './components/CardPequeno/CardPequeno';
+import CardDescricao from './components/CardDescricao/CardDescricao';
 
 function App() {
   return (
@@ -19,6 +20,15 @@ function App() {
           imagem="https://image.flaticon.com/icons/png/512/117/117472.png" 
           texto="Ver mais"
         />
+      </div>
+
+      <div className="page-section-container">
+        <h2>Descrição</h2>
+        <CardDescricao
+          paragrafo="🤖 Tecnologias que utilizo: HTML / CSS / JS / REACT"
+          paragrafo1 = "Codificar é algo que me move e sinto que contribuir pra vida das pessoas é algo totalmente relevante e importante."
+          paragrafo2 = "👤 Meus projetos tão todos aqui: https://github.com/luccasbarros"
+        />    
       </div>
 
       <div className="page-section-container">
@@ -45,8 +55,8 @@ function App() {
         endereco="R: XXX, Cidade: Lavras - MG"/>
       </div>
 
-      <div className="page-section-container">
-        <h2>Minhas redes sociais</h2>
+        <div className="page-section-container">
+          <h2>Minhas redes sociais</h2>
         <ImagemButton 
           imagem="https://d2v9ipibika81v.cloudfront.net/uploads/sites/261/2017/01/facebook-logo-3.png" 
           texto="Facebook" 
