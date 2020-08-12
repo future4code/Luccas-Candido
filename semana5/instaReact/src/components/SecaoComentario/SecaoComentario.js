@@ -6,16 +6,17 @@ export class SecaoComentario extends Component {
 
 	}
 
-	onChangeComentario() {
-
+	onChangeComentario = (event) => {
+		this.setState({ comentado: event.target.value} )
 	}
 
 	render() {
+
 		return <div className={'comment-container'}>
 			<input
 				className={'input-comentario'}
 				placeholder={'Comentário'}
-				value={''}
+				value={this.state.comentado}
 				onChange={this.onChangeComentario}
 			/>
 			<button onClick={this.props.aoEnviar}>Enviar</button>
