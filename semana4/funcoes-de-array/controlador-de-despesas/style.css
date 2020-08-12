@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+#sectionDivs {
+    display: flex;
+}
+
+button {
+    margin-top: 1rem;
+}
+
+div {
+    margin: 1rem;
+}
+
+#formulario {
+    border: 1px double black;
+    padding: 10px;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formulario h1 {
+    margin: 1rem 0;
+}
+
+p {
+    font-size: 70%;
+}
+
+input, select, label {
+    margin: 0.5rem 0;
+}
+
+.inputDetalhes {
+    width: 10vw;
+}
+
+#controladorDespesas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#detalhesDespesas {
+    display: flex;
+    flex-direction: row;
+}
+
+#formularioDetalhes {
+    border: 1px double black;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#extrato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px double black;
+    width: 30vw;
+}
+
+#extrato h1 {
+    margin: 1rem;
+}
+
+#paragrafoExtrato {
+    font-size: 4rem;
+    margin-top: 3rem;
+}
