@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Post from './components/Post/Post';
+import logo from './'
 
 class App extends React.Component {
   render() {

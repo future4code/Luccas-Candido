@@ -2,19 +2,24 @@ import React from 'react'
 import './Post.css'
 
 import {IconeComContador} from '../IconeComContador/IconeComContador'
+import {IconeSave} from '../IconeSave/IconeSave'
 
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
+import iconeSave from '../../img/bookmark.svg'
+import iconeSaveOrange from '../../img/bookmarkOrange.svg'
 
 class Post extends React.Component {
   state = {
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
-    numeroComentarios: 0
+    numeroComentarios: 0,
+    save: false
   }
+
 
   onClickCurtida = () => {
     this.setState({
@@ -29,6 +34,19 @@ class Post extends React.Component {
     }
  
 }
+
+  onClickSave = () => {
+    this.setState({
+      save: !this.state.save
+    })
+
+    if(this.state.save) {
+      this.setState({
+        save: false
+      })
+    }
+  }
+
   onClickComentario = () => {
     this.setState({
       comentando: !this.state.comentando
@@ -50,6 +68,14 @@ class Post extends React.Component {
     } else {
       iconeCurtida = iconeCoracaoBranco
       
+    }
+
+    let iconeSalvar
+
+    if(this.state.save) {
+      iconeSalvar = iconeSaveOrange
+    } else {
+      iconeSalvar = iconeSave
     }
 
     let componenteComentario
@@ -78,6 +104,13 @@ class Post extends React.Component {
           onClickIcone={this.onClickComentario}
           valorContador={this.state.numeroComentarios}
         />
+
+        <IconeSave 
+        icone={iconeSalvar}
+        onClickIcone={this.onClickSave}
+        />
+
+
       </div>
       {componenteComentario}
     </div>
