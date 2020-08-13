@@ -111,6 +111,9 @@ class App extends React.Component {
       )
 
     })
+
+  
+
     return (
       <div className={'app-container'}>
         <InputTeste

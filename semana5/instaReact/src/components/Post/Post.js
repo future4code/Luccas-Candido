@@ -17,7 +17,12 @@ class Post extends React.Component {
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0,
-    save: false
+    save: false,
+    comentarios: [{
+      nomeDoUsuario: "",
+      valorDoComentario: ""
+    }],
+    valorInputComentario: ""
   }
 
 
@@ -54,16 +59,28 @@ class Post extends React.Component {
   }
 
   aoEnviarComentario = () => {
+
+    const novoComentario = {
+      valorDoComentario: this.state.valorInputComentario
+    }
+
+    const novoArrayComentario = [novoComentario, ...this.state.comentarios]
+
     this.setState({
       comentando: false,
-      numeroComentarios: this.state.numeroComentarios + 1
+      numeroComentarios: this.state.numeroComentarios + 1,
+      comentarios: novoArrayComentario
     })
   }
 
   render() {
+
+    const listaComentario = this.state.comentarios.map((comentario) => {
+
+    })
+
     let iconeCurtida
 
-    console.log(this.props.fotoPost)
 
     if(this.state.curtido) {
       iconeCurtida = iconeCoracaoPreto
