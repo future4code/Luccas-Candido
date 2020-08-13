@@ -63,6 +63,8 @@ class Post extends React.Component {
   render() {
     let iconeCurtida
 
+    console.log(this.props.fotoPost)
+
     if(this.state.curtido) {
       iconeCurtida = iconeCoracaoPreto
     } else {
@@ -83,6 +85,8 @@ class Post extends React.Component {
     if(this.state.comentando) {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
     }
+
+    console.log(this.props.fotoPost)
 
     return <div className={'post-container'}>
       <div className={'post-header'}>
