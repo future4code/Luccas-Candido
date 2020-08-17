@@ -1,9 +1,18 @@
 import React from "react";
 import PerguntaAberta from "./PerguntaAberta";
 import PerguntaOpcoes from "./PerguntaOpcoes";
+import EtapaDois from "./EtapaDois";
+import EtapaTres from "./EtapaTres";
 
 class EtapaUm extends React.Component {
   render() {
+    /*   verificaEscolaridade = () => {
+      switch (this.props.opcoes) {
+        case "Ensino Médio Incompleto":
+          return <EtapaTres />;
+      }
+    };
+   */
     return (
       <div className="container-etapa">
         <div>

@@ -17,6 +17,7 @@ class App extends React.Component {
       etapa: this.state.etapa + 1,
     });
   };
+
   render() {
     const renderizarPaginas = () => {
       switch (this.state.etapa) {
