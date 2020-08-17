@@ -1,4 +1,6 @@
 import React from "react";
+import PerguntaAberta from "./PerguntaAberta";
+import PerguntaOpcoes from "./PerguntaOpcoes";
 
 class EtapaTres extends React.Component {
   render() {
@@ -6,14 +8,13 @@ class EtapaTres extends React.Component {
       <div className="container-etapa">
         <div>
           <h2>ETAPA 3 - INFORMAÇÕES GERAIS DE ENSINO</h2>
-          <h3>7. Por que você não terminou um curso de graduação?</h3>
-          <input />
-          <h3>8. Você fez algum curso complementar?</h3>
-          <select>
-            <option value="nenhum">Nenhum</option>
-            <option value="curso-tecnico">Curso Técnico</option>
-            <option value="ingles">Ingles</option>
-          </select>
+          <PerguntaAberta
+            pergunta={"7. Por que você não terminou um curso de graduação?"}
+          />
+          <PerguntaOpcoes
+            pergunta={"8. Você fez algum curso complementar?"}
+            opcoes={["Nenhum", "Curso Técnico", "Inglês"]}
+          />
           <button onClick={this.props.funcaoClicar}>Próxima Etapa</button>
         </div>
       </div>

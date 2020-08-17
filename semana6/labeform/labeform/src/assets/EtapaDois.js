@@ -1,4 +1,5 @@
 import React from "react";
+import PerguntaAberta from "./PerguntaAberta";
 
 class EtapaDois extends React.Component {
   render() {
@@ -6,10 +7,8 @@ class EtapaDois extends React.Component {
       <div className="container-etapa">
         <div>
           <h2>ETAPA 2 - INFORMAÇÕES DO ENSINO SUPERIOR</h2>
-          <h3>5. Qual curso?</h3>
-          <input />
-          <h3>6. Qual a unidade de ensino?</h3>
-          <input />
+          <PerguntaAberta pergunta={"5. Qual curso?"} />
+          <PerguntaAberta pergunta={"6. Qual a unidade de ensino?"} />
           <button onClick={this.props.funcaoClicar}>Próxima Etapa</button>
         </div>
       </div>
