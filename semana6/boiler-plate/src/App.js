@@ -21,27 +21,25 @@ const InputsContainer = styled.div`
 
 class App extends React.Component {
   state = {
-    tarefas: [
-      {
-        id: Date.now(),
-        texto: "Task 1",
-        completa: false,
-      },
-    ],
+    tarefas: [],
     inputValue: "",
     filtro: "",
   };
 
-  componentDidUpdate() {}
+  componentDidMount() {
+    const stringTask = localStorage.getItem("tasks");
+    const taskObject = JSON.parse(stringTask);
 
-  componentDidMount() {}
+    this.setState({ tarefas: taskObject });
+  }
+  componentDidUpdate() {
+    localStorage.setItem("tasks", JSON.stringify(this.state.tarefas));
+  }
 
   onChangeInput = (event) => {
     this.setState({
       inputValue: event.target.value,
     });
-
-    console.log(this.state.inputValue);
   };
 
   criaTarefa = () => {
