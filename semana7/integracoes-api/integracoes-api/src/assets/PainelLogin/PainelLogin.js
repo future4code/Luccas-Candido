@@ -52,6 +52,7 @@ export default class PainelLogin extends React.Component {
 
     }
 
+    // Criando usuário
     createUser = () => {
 
         const body = {
