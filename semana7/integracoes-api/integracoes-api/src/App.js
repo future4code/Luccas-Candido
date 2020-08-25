@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import styled from 'styled-components'
 import axios from 'axios'
+import ListaUsuarios from './assets/ListaUsuarios/ListaUsuarios'
 
 const Container = styled.div`
 display: flex;
@@ -67,7 +68,6 @@ export default class App extends React.Component {
     inputNome: "",
     inputEmail: "",
     showList: false,
-    userList: []
   }
   // Valores Input Nome
   onChangeNome = (event) => {
@@ -101,7 +101,6 @@ export default class App extends React.Component {
     request
     .then((response) => {
       alert(`Usuário ${this.state.inputNome} cadastrado com sucesso!`)
-      this.getUser()
       this.setState({inputNome: "", inputEmail: ""})
     })
     .catch((erro) => {
@@ -109,23 +108,6 @@ export default class App extends React.Component {
     })
 
   }
-
-  getUser = () => {
-
-    const request = axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", {
-      headers: {
-        Authorization: "luccas-barros-jackson"
-      }
-    })
-
-    request.then((response) => {
-      console.log(response.data)
-        this.setState({userList: response.data})
-    }).catch((erro) => {
-        console.log('Ocorreu um erro.')
-    })
-  }
-
 
 
   mudarVisibilidade = () => {
@@ -161,13 +143,7 @@ export default class App extends React.Component {
 
       } else {
 
-        return <DivContainerLista>  
-          <h1>Usuários cadastrados:</h1>
-          {this.state.userList.map((user) => {
-            return <p key={user.id}>{user.name}</p>
-          })}
-          
-        </DivContainerLista>
+        return <ListaUsuarios />
       }
     }
 
