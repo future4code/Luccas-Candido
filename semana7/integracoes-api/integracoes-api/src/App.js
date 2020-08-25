@@ -5,8 +5,8 @@ import axios from 'axios'
 
 const Container = styled.div`
 display: flex;
-align-content: center;
-justify-content: center;
+align-items: center;
+flex-direction: column;
 `
 
 const ContainerLogin = styled.div`
@@ -36,41 +36,52 @@ margin-top: 20px;
 display: flex;
 align-items: center;
 justify-content: center;
+border-radius: 5px;
+`
+
+const ChangeButton = styled.button`
+background-color: #3451c2;
+border: none;
+padding: 16px;
+color: white;
+width: 100px;
+height: 30px;
+margin-top: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 5px;
+outline: none;
+cursor: pointer;
+`
+
+const DivContainerLista = styled.div`
+display: flex;
+justify-content: center;
+flex-direction: column;
 `
 
 export default class App extends React.Component {
 
   state = {
     inputNome: "",
-    inputEmail: ""
+    inputEmail: "",
+    showList: false,
+    userList: []
   }
   // Valores Input Nome
   onChangeNome = (event) => {
-    this.setState({inputNome: event.target.value})
+    this.setState({ inputNome: event.target.value })
     console.log(this.state.inputNome)
 
   }
   // Valores Input Email
   onChangeEmail = (event) => {
-    this.setState({inputEmail: event.target.value})
+    this.setState({ inputEmail: event.target.value })
     console.log(this.state.inputEmail)
 
   }
 
-
-  // getUser = () => {
-  //   const request = axio.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", {
-  //     headers: {
-  //       Authorization: "luccas-barros-jackson"
-  //     }
-  //   })
-
-  //   request.then((response) => {
-
-  //   })
-  // }
-
-  
   createUser = () => {
 
     const body = {
@@ -78,42 +89,95 @@ export default class App extends React.Component {
       email: this.state.inputEmail
     }
 
-    const request = axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-    body, {
+    const request = axios.post(
+      "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
+      body, 
+      {
+      headers: {
+        Authorization: "luccas-barros-jackson"
+      }
+    })
+
+    request
+    .then((response) => {
+      alert(`Usuário ${this.state.inputNome} cadastrado com sucesso!`)
+      this.getUser()
+      this.setState({inputNome: "", inputEmail: ""})
+    })
+    .catch((erro) => {
+      console.log(erro)
+    })
+
+  }
+
+  getUser = () => {
+
+    const request = axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", {
       headers: {
         Authorization: "luccas-barros-jackson"
       }
     })
 
     request.then((response) => {
-      alert(`O Usuário ${this.state.inputNome} foi criado com sucesso`)
+      console.log(response.data)
+        this.setState({userList: response.data})
     }).catch((erro) => {
-      console.log(erro)
+        console.log('Ocorreu um erro.')
     })
-
-
   }
-  
 
 
+
+  mudarVisibilidade = () => {
+    this.setState({ showList: !this.state.showList })
+  }
+
+  // ===== RENDER =====
   render() {
-    return(
-      <Container>
-       <ContainerLogin>
 
-        <LabelDiv>
-          <label>Nome:</label>
-          <input onChange={this.onChangeNome} />
-        </LabelDiv>
-      
-        <LabelDiv>
-          <label>Email:</label>
-          <input onChange={this.onChangeEmail}/>
-        </LabelDiv>
+    const paginaRenderizada = () => {
 
-        <SaveButton>Salvar</SaveButton>
-      
+      if (!this.state.showList) {
+
+        return <ContainerLogin>
+
+          <LabelDiv>
+            <label>Nome:</label>
+            <input 
+            value={this.state.inputNome}
+            onChange={this.onChangeNome} />
+          </LabelDiv>
+
+          <LabelDiv>
+            <label>Email:</label>
+            <input 
+            value={this.state.inputEmail}
+            onChange={this.onChangeEmail} />
+          </LabelDiv>
+
+          <SaveButton onClick={this.createUser}>Salvar</SaveButton>
+
         </ContainerLogin>
+
+      } else {
+
+        return <DivContainerLista>  
+          <h1>Usuários cadastrados:</h1>
+          {this.state.userList.map((user) => {
+            return <p key={user.id}>{user.name}</p>
+          })}
+          
+        </DivContainerLista>
+      }
+    }
+
+
+    return (
+      <Container>
+        <ChangeButton onClick={this.mudarVisibilidade}>
+          {this.state.showList ? "Ocultar Lista" : "Mostrar Lista"}
+        </ChangeButton>
+        {paginaRenderizada()}
       </Container>
     )
   }
