@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
+import Icone from './../../img/delete.svg'
 import App from './../../App'
 
 const DivContainerLista = styled.div`
@@ -9,11 +10,30 @@ justify-content: center;
 flex-direction: column;
 `
 
+const IconCursor = styled.img`
+cursor: pointer;
+`
+
 export default class ListaUsuarios extends React.Component {
 
     state = {
         userList: []
     }
+
+    deleterUser = (id) => {
+        const request = axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, {
+            headers: {
+                Authorization: "luccas-barros-jackson"
+            }
+        })
+
+        request.then((response) => {
+            alert('Item deletado')
+        }).catch((erro) => {
+            alert('Não foi possível deletar.')
+        })
+    }
+
 
     getUser = () => {
 
@@ -38,8 +58,9 @@ export default class ListaUsuarios extends React.Component {
     render() {
 
         const userListRender = this.state.userList.map((user) => {
-            return <p key={user.id}>{user.name}</p>
+        return <p key={user.id}> {user.name} <IconCursor src={Icone} onClick={() => this.deleterUser(user.id)}/></p>
           })
+
 
 
         return (
