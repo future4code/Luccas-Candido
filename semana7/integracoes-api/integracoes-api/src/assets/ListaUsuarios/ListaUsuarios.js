@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Icone from "./../../img/delete.svg";
-import App from "./../../App";
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 const DivContainerLista = styled.div`
   display: flex;
@@ -10,18 +11,17 @@ const DivContainerLista = styled.div`
   flex-direction: column;
 `;
 
-const IconCursor = styled.img`
-  cursor: pointer;
-`;
 
 export default class ListaUsuarios extends React.Component {
   state = {
     userList: [],
   };
 
+  
+
   //   Deletar usuário
   deleterUser = (id) => {
-      
+       
     if (window.confirm("Deletar este usuário?")) {
       const request = axios.delete(
         `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`,
@@ -54,7 +54,6 @@ export default class ListaUsuarios extends React.Component {
 
     request
       .then((response) => {
-        console.log(response);
         this.setState({ userList: response.data });
       })
       .catch((erro) => {
@@ -72,7 +71,12 @@ export default class ListaUsuarios extends React.Component {
         <p key={user.id}>
           {" "}
           {user.name}{" "}
-          <IconCursor src={Icone} onClick={() => this.deleterUser(user.id)} />
+          <Button 
+          variant="contained"
+          color="primary"
+          size="small"
+          startIcon={<DeleteIcon />}
+          onClick={() => this.deleterUser(user.id)}>Deletar</Button>
         </p>
       );
     });

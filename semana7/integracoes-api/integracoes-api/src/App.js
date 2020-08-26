@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import axios from 'axios'
 import ListaUsuarios from './assets/ListaUsuarios/ListaUsuarios'
 import PainelLogin from './assets/PainelLogin/PainelLogin'
+import Button from '@material-ui/core/Button'
+
 
 const Container = styled.div`
 display: flex;
@@ -59,9 +61,9 @@ export default class App extends React.Component {
 
     return (
       <Container>
-        <ChangeButton onClick={this.mudarVisibilidade}>
+        <Button size="small" variant="contained" color="primary" onClick={this.mudarVisibilidade}>
           {changeTitleButton}
-        </ChangeButton>
+        </Button>
         {paginaRenderizada()}
       </Container>
     )

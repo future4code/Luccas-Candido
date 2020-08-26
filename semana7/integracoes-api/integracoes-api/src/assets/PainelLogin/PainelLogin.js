@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save';
 
 const ContainerLogin = styled.div`
 display: flex;
@@ -18,19 +20,6 @@ justify-content: center;
 margin: 8px;
 `
 
-const SaveButton = styled.button`
-background-color: #3451c2;
-border: none;
-padding: 16px;
-color: white;
-width: 80px;
-height: 30px;
-margin-top: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 5px;
-`
 
 export default class PainelLogin extends React.Component {
 
@@ -105,7 +94,11 @@ export default class PainelLogin extends React.Component {
                         onChange={this.onChangeEmail} />
                 </LabelDiv>
 
-                <SaveButton onClick={this.createUser}>Salvar</SaveButton>
+                <Button size="small" 
+                variant ="contained" 
+                color="primary" 
+                startIcon={<SaveIcon />}
+                onClick={this.createUser}>Salvar</Button>
 
             </ContainerLogin>
         )
