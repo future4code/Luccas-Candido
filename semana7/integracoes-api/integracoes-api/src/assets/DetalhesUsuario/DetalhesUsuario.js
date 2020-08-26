@@ -7,9 +7,18 @@ const DivContainerLista = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 `;
 
+const DivInfos = styled.div`
+
+`
+
 export default class DetalhesUsuario extends React.Component {
+
+  state = {
+    userInfo: ""
+  }
 
   componentDidMount(){
     // Pegar o user pelo ID.
@@ -25,23 +34,28 @@ export default class DetalhesUsuario extends React.Component {
 
     request
       .then((response) => {
-        alert('Deu certo!')
-        console.log(response);
-        console.log(response.data)
+        console.log('Deu certo!')
+        this.setState({userInfo: response.data})
       })
       .catch((error) => {
         console.log(error);
       });
+
   }
   
 
   render() {
 
-
     return (
       <DivContainerLista>
+        <DivInfos>
         <Button onClick={this.props.funcaoLista}>Voltar para lista</Button>
-        Oi
+        </DivInfos>
+        <DivInfos>
+        <p>Email do usuário: {this.state.userInfo.email}</p>
+        <p>Nome do usuário: {this.state.userInfo.name}</p>
+
+        </DivInfos>
       </DivContainerLista>
     );
   }

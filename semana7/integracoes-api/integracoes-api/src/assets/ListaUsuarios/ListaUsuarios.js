@@ -23,12 +23,8 @@ const DivButton = styled.div`
 display: flex;
 `
 const DivP = styled.div`
-border: 1px solid black;
-border-radius: 5px;
-display: flex;
-justify-content: center;
-align-items: center;
 height: 5vh;
+padding: 20px;
 `
 
 const Container = styled.div`
@@ -41,10 +37,6 @@ export default class ListaUsuarios extends React.Component {
   state = {
     userList: [],
   };
-
-
-
-
 
   //   Deletar usuário
 

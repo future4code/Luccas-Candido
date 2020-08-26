@@ -10,22 +10,12 @@ import DetalhesUsuario from "./assets/DetalhesUsuario/DetalhesUsuario";
 export default class App extends React.Component {
   state = {
     currentPage: "login",
+    currentUserId: ""
   };
 
   // OnClicks utilizados nos componentes para alterar no estado da página.
   onClickDetalhesUsuario = (idUsuario) => {
-    
-    this.setState({ currentPage: "renderiza" });
-
-    if(this.state.currentPage === "renderiza"){
-      
-      return <DetalhesUsuario idTeste={idUsuario}/>
-
-    }
-
-    console.log(idUsuario)
-
-
+    this.setState({ currentPage: "renderiza", currentUserId: idUsuario});
   };
 
   onClickLogin = () => {
@@ -46,7 +36,9 @@ export default class App extends React.Component {
 
       } else if (this.state.currentPage === "renderiza") {
 
-        return <DetalhesUsuario funcaoLista={this.onClickLista} />;
+        return <DetalhesUsuario 
+        idTeste={this.state.currentUserId}
+        funcaoLista={this.onClickLista} />;
 
       } else {
 
