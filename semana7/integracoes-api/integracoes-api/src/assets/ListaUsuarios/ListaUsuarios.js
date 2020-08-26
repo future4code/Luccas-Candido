@@ -35,6 +35,7 @@ export default class ListaUsuarios extends React.Component {
       request
         .then((response) => {
           alert("Item deletado");
+          this.getUser()
         })
         .catch((erro) => {
           alert("Não foi possível deletar.");
