@@ -1,73 +1,64 @@
-import React from 'react';
-import './App.css';
-import styled from 'styled-components'
-import axios from 'axios'
-import ListaUsuarios from './assets/ListaUsuarios/ListaUsuarios'
-import PainelLogin from './assets/PainelLogin/PainelLogin'
-import Button from '@material-ui/core/Button'
-
-
-const Container = styled.div`
-display: flex;
-align-items: center;
-flex-direction: column;
-`
-
-
-const ChangeButton = styled.button`
-background-color: #3451c2;
-border: none;
-padding: 16px;
-color: white;
-width: 100px;
-height: 30px;
-margin-top: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 5px;
-outline: none;
-cursor: pointer;
-`
+import React from "react";
+import "./App.css";
+import styled from "styled-components";
+import axios from "axios";
+import ListaUsuarios from "./assets/ListaUsuarios/ListaUsuarios";
+import PainelLogin from "./assets/PainelLogin/PainelLogin";
+import Button from "@material-ui/core/Button";
+import DetalhesUsuario from "./assets/DetalhesUsuario/DetalhesUsuario";
 
 export default class App extends React.Component {
-
   state = {
-    showList: false, // Começa a renderização com false
-  }
-  
-  // Função que muda o boolean do showlist para true
+    currentPage: "login",
+  };
 
-  mudarVisibilidade = () => {
-    this.setState({ showList: !this.state.showList })
-  }
+  // OnClicks utilizados nos componentes para alterar no estado da página.
+  onClickDetalhesUsuario = (idUsuario) => {
+    
+    this.setState({ currentPage: "renderiza" });
+
+    if(this.state.currentPage === "renderiza"){
+      
+      return <DetalhesUsuario idTeste={idUsuario}/>
+
+    }
+
+    console.log(idUsuario)
+
+
+  };
+
+  onClickLogin = () => {
+    this.setState({ currentPage: "login" });
+  };
+
+  onClickLista = () => {
+    this.setState({ currentPage: "lista" });
+  };
 
   // ===== RENDER =====
   render() {
-
     const paginaRenderizada = () => {
 
-      if (!this.state.showList) {
+      if (this.state.currentPage === "login") {
+        
+        return <PainelLogin funcaoLogin={this.onClickLista} />;
 
-        return <PainelLogin />
+      } else if (this.state.currentPage === "renderiza") {
+
+        return <DetalhesUsuario funcaoLista={this.onClickLista} />;
 
       } else {
 
-        return <ListaUsuarios />
+        return (
+          <ListaUsuarios
+            funcaoLogin={this.onClickLogin}
+            funcaoUsuario={this.onClickDetalhesUsuario}
+          />
+        );
       }
-    }
+    };
 
-    const changeTitleButton = this.state.showList ? "Ocultar Lista" : "Mostrar Lista"
-
-    return (
-      <Container>
-        <Button size="small" variant="contained" color="primary" onClick={this.mudarVisibilidade}>
-          {changeTitleButton}
-        </Button>
-        {paginaRenderizada()}
-      </Container>
-    )
+    return <div>{paginaRenderizada()}</div>;
   }
-
 }
-
