@@ -9,6 +9,7 @@ const DivContainer = styled.div`
   align-items: center;
   height: 100%;
   background: linear-gradient(120deg, #1db954, #191414);
+  background-size: cover;
 `;
 
 const ImgPlaylist = styled.img`
@@ -88,13 +89,23 @@ export default class CreatePlaylist extends React.Component {
 
   deletePlaylist = (id) => {
     const request = axios.delete(
-      "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+      `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`,
       {
         headers: {
           Authorization: "luccas-barros-jackson",
         },
       }
     );
+
+    request
+      .then((response) => {
+        alert("Deu certo");
+        this.getAllPlaylists();
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(MediaError);
+      });
   };
 
   // Pegando todas playlists
@@ -133,7 +144,7 @@ export default class CreatePlaylist extends React.Component {
           <PlaylistP>Playlist</PlaylistP>
           <PlaylistName>
             {p.name}
-            <img src={DeleteIcon} />
+            <img src={DeleteIcon} onClick={() => this.deletePlaylist(p.id)} />
           </PlaylistName>
           <ImgPlaylist src={this.props.urlImage} />
           <ButtonCreate onClick={() => this.props.detailClick(p.name, p.id)}>
