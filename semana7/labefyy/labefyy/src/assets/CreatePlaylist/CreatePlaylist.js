@@ -7,12 +7,8 @@ const DivContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background: linear-gradient(120deg, #1db954, #191414);
-`;
-
-const DivContainerTeste = styled.div`
-  margin-bottom: 10vh;
+  height: 100vh;
 `;
 
 const ButtonList = styled.button`
@@ -121,11 +117,10 @@ export default class CreatePlaylist extends React.Component {
     return (
       <DivContainer>
         <DivCreateTrack>
-          <DivContainerTeste>
-            <ButtonList onClick={this.props.listClick}>
-              Lista de Playlists
-            </ButtonList>
-          </DivContainerTeste>
+          <ButtonList onClick={this.props.listClick}>
+            Lista de Playlists
+          </ButtonList>
+
           <ImgLogo src={labefy} />
 
           <TextFieldCustom

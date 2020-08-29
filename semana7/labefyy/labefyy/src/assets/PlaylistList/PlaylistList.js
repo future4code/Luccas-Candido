@@ -7,13 +7,14 @@ const DivContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
   background: linear-gradient(120deg, #1db954, #191414);
-  background-size: cover;
+  flex-direction: column;
 `;
 
 const ImgPlaylist = styled.img`
   width: 50%;
+  margin-bottom: 10px;
 `;
 
 const DivList = styled.div`
@@ -27,7 +28,7 @@ const PlaylistP = styled.p`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 12px;
-  margin-top: 36px;
+  margin-top: 1rem;
 `;
 
 const PlaylistName = styled.p`
@@ -35,14 +36,13 @@ const PlaylistName = styled.p`
   letter-spacing: 0.1em;
   font-size: 24px;
   font-weight: bold;
-  padding-bottom: 16px;
 `;
 
 const DivCreateTrack = styled.div`
   display: flex;
   flex-direction: column;
   width: 30vw;
-  height: 100%;
+  height: auto;
   align-items: center;
   justify-content: space-evenly;
   padding: 16px;
@@ -58,7 +58,7 @@ const ButtonCreate = styled.button`
   color: white;
   width: 160px;
   height: 40px;
-  margin-top: 30px;
+  margin-bottom: 20px;
   -webkit-box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
@@ -67,10 +67,11 @@ const ButtonCreate = styled.button`
 `;
 
 const ButtonList = styled.button`
+  margin-bottom: 20px;
   font-size: 16px;
   background-color: none;
   color: #2ebd59;
-  width: 160px;
+  width: 30%;
   height: 40px;
   border: none;
   background-color: white;
@@ -158,10 +159,9 @@ export default class CreatePlaylist extends React.Component {
     });
     return (
       <DivContainer>
-        <DivCreateTrack>
-          <ButtonList onClick={this.props.loginClick}>Voltar</ButtonList>
-          {renderPlaylist}
-        </DivCreateTrack>
+        <ButtonList onClick={this.props.loginClick}>Voltar</ButtonList>
+
+        <DivCreateTrack>{renderPlaylist}</DivCreateTrack>
       </DivContainer>
     );
   }
