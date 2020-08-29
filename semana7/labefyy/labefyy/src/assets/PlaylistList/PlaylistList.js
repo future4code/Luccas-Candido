@@ -86,6 +86,17 @@ export default class CreatePlaylist extends React.Component {
     playlistList: [],
   };
 
+  deletePlaylist = (id) => {
+    const request = axios.delete(
+      "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+      {
+        headers: {
+          Authorization: "luccas-barros-jackson",
+        },
+      }
+    );
+  };
+
   // Pegando todas playlists
   getAllPlaylists = () => {
     const request = axios.get(
