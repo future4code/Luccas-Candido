@@ -8,16 +8,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 // Icons
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 // ======= Material UI Imports =======
 
-// Cards
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import Card from "@material-ui/core/Card";
-
-import Typography from "@material-ui/core/Typography";
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -35,11 +31,40 @@ const theme = createMuiTheme({
   },
 });
 
+
+const ExtDiv = styled.div`
+
+  @media (min-width: 600px) {
+    display:flex;
+    justify-content: center;
+  }
+`;
 const IntDiv = styled.div`
-  height: 99.4vh;
+  min-height: 99.4vh;
   width: 100%;
   border: 2px solid rgba(190, 190, 190, 0.6);
+  @media (min-width: 600px) {
+    width: 40vw;
+  }
 `;
+
+const DivClearButton = styled.div`
+display: flex;
+justify-content: center;
+margin-top: 2rem;
+`
+
+const MatchDiv = styled.div`
+display: flex;
+max-width: 60vw;
+margin-left: 2rem;
+margin-top: 1rem;
+border-bottom: 2px solid rgba(190, 190, 190, 0.6);
+`
+
+const ParaMatch = styled.p`
+margin-left: 1rem;
+`
 
 const NavDiv = styled.div`
   display: flex;
@@ -47,6 +72,10 @@ const NavDiv = styled.div`
   height: 10vh;
   align-items: center;
   justify-content: space-around;
+  @media (min-width: 600px) {
+    justify-content: center;
+    width: 40vw;
+  }
 `;
 
 const IconDiv = styled.div`
@@ -55,22 +84,48 @@ const IconDiv = styled.div`
 `;
 
 function MatchScreen(props) {
+
+  useEffect(() => {
+    props.getMatches();
+  }, []);
+
+  
   return (
-    <div>
+    <ExtDiv>
       <IntDiv>
-      <ThemeProvider theme={theme}>
-      <NavDiv>
-      <IconDiv>
-              <Button startIcon={<KeyboardBackspaceIcon />}variant="contained" size="small" color="primary" onClick={props.onClickBack}>
+        <ThemeProvider theme={theme}>
+          <NavDiv>
+            <IconDiv>
+              <Button
+                startIcon={<KeyboardBackspaceIcon />}
+                variant="contained"
+                size="small"
+                color="primary"
+                onClick={props.onClickBack}
+              >
                 Voltar
               </Button>
+              
             </IconDiv>
             <img src={Logo} />
-            
           </NavDiv>
-      </ThemeProvider>
+          {props.match === null && <p><LinearProgress/></p>}
+          {props.match !== null && props.match.map((match) => {
+            return <MatchDiv key={match.id}><Avatar alt={match.name} src={match.photo}/> <ParaMatch>{match.name}</ParaMatch></MatchDiv>;
+          })}
+          {props.match !== null && <DivClearButton><Button
+                variant="outlined"
+                size="small"
+                color="primary"
+                onClick={props.deleteButton}
+              >
+                Limpar Matches
+              </Button></DivClearButton>}
+            
+        </ThemeProvider>
+        
       </IntDiv>
-    </div>
+    </ExtDiv>
   );
 }
 

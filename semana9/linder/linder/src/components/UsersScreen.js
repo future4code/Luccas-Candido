@@ -19,7 +19,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
@@ -48,7 +48,6 @@ const useStyles = makeStyles({
 // ====== DIVS ======
 const ExtDiv = styled.div`
   display: flex;
-  height: 100%;
 
   @media (min-width: 600px) {
     justify-content: center;
@@ -57,8 +56,8 @@ const ExtDiv = styled.div`
 
 const IntDiv = styled.div`
   height: 99.4vh;
-  width: 100%;
   border: 2px solid rgba(190, 190, 190, 0.6);
+  width: 100%;
 
   @media (min-width: 600px) {
     width: 40vw;
@@ -71,7 +70,7 @@ const NavDiv = styled.div`
   height: 10vh;
   align-items: center;
   justify-content: space-around;
-  
+
   @media (min-width: 600px) {
     justify-content: center;
     width: 40vw;
@@ -108,51 +107,7 @@ const ImgProfile = styled.img`
 `;
 
 function UsersScreen(props) {
-  const [profile, setProfile] = useState(null);
-
-
   const classes = useStyles();
-
-  useEffect(() => {
-    getProfile();
-  }, []);
-
-  //
-  const getProfile = () => {
-    axios
-      .get(
-        "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:aluno/person"
-      )
-      .then((response) => {
-        console.log(response.data);
-        console.log("Deu o get!");
-        setProfile(response.data.profile);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("Deu o erro!");
-      });
-  };
-
-  const choosePerson = (choice) => {
-
-    const body = {
-      id: profile.id,
-      choice: choice
-    }
-    const request = axios.post(
-      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/luccas/choose-person", body
-    );
-
-    request
-      .then((response) => {
-        console.log("Deu certo!", response.data);
-        getProfile();
-      })
-      .catch((err) => {
-        console.log("Deu ruim", err);
-      });
-  };
 
   return (
     <ExtDiv>
@@ -172,41 +127,57 @@ function UsersScreen(props) {
               </Button>
             </IconDiv>
           </NavDiv>
-          {profile === null && <p><LinearProgress /></p>}
+          {props.profile === null && (
+            <p>
+              <LinearProgress />
+            </p>
+          )}
           {/* Div Progile */}
-          {profile !== null && <ProfileDiv>
-            {/* IMG Profile */}
-            <ImgProfile src={profile.photo} />
+          {props.profile !== null && (
+            <ProfileDiv>
+              {/* IMG Profile */}
+              <ImgProfile src={props.profile.photo} />
 
-            {/* Card com Infos */}
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {profile.name}, {profile.age}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {profile.bio}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </ProfileDiv>}
+              {/* Card com Infos */}
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {props.profile.name}, {props.profile.age}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {props.profile.bio}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </ProfileDiv>
+          )}
           {/* End Div Profile */}
+          {props.profile !== null && (
+            <ButtonDiv>
+              <Fab
+                onClick={() => props.onClickChoice(false)}
+                color="primary"
+                aria-label="add"
+              >
+                <CloseIcon />
+              </Fab>
+              <Fab
+                onClick={() => props.onClickChoice(true)}
+                color="secondary"
+                aria-label="add"
+              >
+                <FavoriteIcon />
+              </Fab>
+            </ButtonDiv>
+          )}
 
           {/* Botões */}
-          <ButtonDiv>
-            <Fab onClick={() => choosePerson(false)} color="primary" aria-label="add">
-              <CloseIcon />
-            </Fab>
-            <Fab onClick={() => choosePerson(true)} color="secondary" aria-label="add">
-              <FavoriteIcon />
-            </Fab>
-          </ButtonDiv>
         </ThemeProvider>
       </IntDiv>
     </ExtDiv>
