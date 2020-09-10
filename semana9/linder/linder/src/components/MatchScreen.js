@@ -57,8 +57,7 @@ margin-top: 2rem;
 const MatchDiv = styled.div`
 display: flex;
 max-width: 60vw;
-margin-left: 2rem;
-margin-top: 1rem;
+margin: 1rem 2rem;
 border-bottom: 2px solid rgba(190, 190, 190, 0.6);
 `
 
