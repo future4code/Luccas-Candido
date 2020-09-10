@@ -99,7 +99,7 @@ const ButtonDiv = styled.div`
 // IMG
 const ImgProfile = styled.img`
   width: 90%;
-height: 20rem;
+  height: 20rem;
   border-radius: 5px;
 
   @media (min-width: 600px) {
