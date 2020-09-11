@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "./../img/logo.svg";
-
-// Axios
-import axios from "axios";
-
-// Hooks
-import { useState, useEffect } from "react";
+import {Swiper, SwiperSlide} from "swiper/react"
 
 // Icons
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -110,6 +105,10 @@ const ImgProfile = styled.img`
 
 function UsersScreen(props) {
   const classes = useStyles();
+  const [index, setIndex] = React.useState(0)
+  const onSwiped = () => {
+    setIndex(index + 1)
+  }
 
   return (
     <ExtDiv>
@@ -138,6 +137,12 @@ function UsersScreen(props) {
           {props.profile !== null && (
             <ProfileDiv>
               {/* IMG Profile */}
+              <Swiper
+              cards={props.profile}
+              cardIndex={index}
+              >
+                
+              </Swiper>
               <ImgProfile src={props.profile.photo} />
 
               {/* Card com Infos */}
