@@ -101,6 +101,7 @@ const ImgProfile = styled.img`
   width: 90%;
   height: 20rem;
   border-radius: 5px;
+  box-shadow: 0px 23px 60px 0px rgba(0, 0, 0, 0.3);
 
   @media (min-width: 600px) {
     width: 60%;
