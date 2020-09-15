@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { goBack, goToPanelPage } from "../../router/goToPages";
 import { useHistory } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const DivForm = styled.div`
   display: flex;
@@ -25,6 +26,17 @@ const DivButton = styled.div`
   margin: 1rem 0 0 1rem;
 `;
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#3f3d56",
+    },
+    secondary: {
+      main: "#3F3D56",
+    },
+  },
+});
+
 function LoginPage() {
   const history = useHistory();
   const [user, setUser] = useState("");
@@ -41,9 +53,13 @@ function LoginPage() {
   };
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <DivButton>
-        <Button onClick={() => goBack(history)} variant="outlined">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => goBack(history)}
+        >
           Voltar
         </Button>
       </DivButton>
@@ -59,16 +75,20 @@ function LoginPage() {
         <TextField
           value={password}
           onChange={handlePassword}
-          id="outlined-basic"
+          color="primary"
           label="Password"
           variant="outlined"
           type="password"
         />
-        <Button variant="outlined" onClick={() => goToPanelPage(history)}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => goToPanelPage(history)}
+        >
           Login
         </Button>
       </DivForm>
-    </div>
+    </ThemeProvider>
   );
 }
 

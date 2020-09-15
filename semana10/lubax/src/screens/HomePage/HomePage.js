@@ -3,6 +3,7 @@ import Logo from "../../imgs/logo2.svg";
 import Content1 from "../../imgs/content.svg";
 import CardInfo from "./CardInfo";
 import { useHistory } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import {
   HeaderDiv,
@@ -27,6 +28,17 @@ import MenuIcon from "@material-ui/icons/Menu";
 import LockOpenOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import LoyaltyOutlinedIcon from "@material-ui/icons/LoyaltyOutlined";
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#3f3d56",
+    },
+    secondary: {
+      main: "#3F3D56",
+    },
+  },
+});
+
 function HomePage() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
@@ -40,14 +52,15 @@ function HomePage() {
   };
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       {/* Header */}
       <HeaderDiv>
         <ImgHome src={Logo} />
 
         {/* Menu */}
         <Button
-          variant="outlined"
+          variant="contained"
+          color="secondary"
           aria-controls="simple-menu"
           aria-haspopup="true"
           onClick={handleClick}
@@ -92,7 +105,7 @@ function HomePage() {
           <FooterItem>flickr</FooterItem>
         </Footer>
       </FlexDiv>
-    </div>
+    </ThemeProvider>
   );
 }
 
