@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Logo from "../../imgs/logo2.svg";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { goBack } from "../../router/goToPages";
+import { goBack, goToPanelPage } from "../../router/goToPages";
 import { useHistory } from "react-router-dom";
 
 const DivForm = styled.div`
@@ -64,7 +64,9 @@ function LoginPage() {
           variant="outlined"
           type="password"
         />
-        <Button variant="outlined">Login</Button>
+        <Button variant="outlined" onClick={() => goToPanelPage(history)}>
+          Login
+        </Button>
       </DivForm>
     </div>
   );

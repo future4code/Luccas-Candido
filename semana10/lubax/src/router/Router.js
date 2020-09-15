@@ -6,6 +6,7 @@ import HomePage from "../screens/HomePage/HomePage";
 import ListTripPage from "../screens/ListTripPage/ListTripPage";
 import LoginPage from "../screens/LoginPage/LoginPage";
 import TripDetailsPage from "../screens/TripDetailsPage/TripDetailsPage";
+import AdmPanel from "../screens/AdmPanel.js/AdmPanel";
 
 function Router() {
   return (
@@ -31,8 +32,12 @@ function Router() {
           <ListTripPage />
         </Route>
 
-        <Route exact path="/trips/create ">
+        <Route exact path="/trips/create">
           <CreateTripPage />
+        </Route>
+
+        <Route exact path="/panel">
+          <AdmPanel />
         </Route>
       </Switch>
     </BrowserRouter>
