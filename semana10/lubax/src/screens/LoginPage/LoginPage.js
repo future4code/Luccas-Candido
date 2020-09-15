@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Logo from "../../imgs/logo2.svg";
 import styled from "styled-components";
@@ -27,6 +27,18 @@ const DivButton = styled.div`
 
 function LoginPage() {
   const history = useHistory();
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUser = (e) => {
+    setUser(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    console.log(e.target.value);
+  };
 
   return (
     <div className="App">
@@ -37,8 +49,16 @@ function LoginPage() {
       </DivButton>
       <DivForm>
         <ImgLogo src={Logo} />
-        <TextField id="outlined-basic" label="User" variant="outlined" />
         <TextField
+          value={user}
+          onChange={handleUser}
+          id="outlined-basic"
+          label="User"
+          variant="outlined"
+        />
+        <TextField
+          value={password}
+          onChange={handlePassword}
           id="outlined-basic"
           label="Password"
           variant="outlined"
