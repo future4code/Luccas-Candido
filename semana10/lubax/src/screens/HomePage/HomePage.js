@@ -51,7 +51,7 @@ function HomePage() {
         {/* Menu */}
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           aria-controls="simple-menu"
           aria-haspopup="true"
           onClick={handleClick}

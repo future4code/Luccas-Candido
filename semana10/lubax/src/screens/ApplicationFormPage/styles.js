@@ -26,11 +26,12 @@ export const ImgIntro = styled.img`
 
 export const DivButton = styled.div`
   display: flex;
-  justify-content: flex-start;
-  margin: 1rem 0 0 1rem;
+  justify-content: space-between;
+  margin: 1rem 1rem;
 `;
 
 export const Title = styled.h1`
   font-size: 24px;
   color: #3f3d56;
+  width: 50%;
 `;
