@@ -5,13 +5,14 @@ import Button from "@material-ui/core/Button";
 import ImgContent from "../../imgs/formapp.svg";
 import { theme, FlexDiv, ImgIntro, DivButton, Title } from "./styles";
 import { goBack, goToHome } from "../../router/goToPages";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
 
 function ApplicationFormPage() {
   const history = useHistory();
+  const pathParams = useParams();
 
   // State
   const [nameValue, setNameValue] = useState("");
@@ -44,6 +45,29 @@ function ApplicationFormPage() {
   const handleCountry = (event) => {
     setCountryValue(event.target.value);
     console.log(countryValue);
+  };
+
+  const apllyTrip = () => {
+    const body = {
+      name: nameValue,
+      age: ageValue,
+      applicationText: descriptionValue,
+      profession: profValue,
+      country: countryValue,
+    };
+
+    const request = axios.post(
+      `https://us-central1-labenu-apis.cloudfunctions.net/labeX/luccas-jackson/trips/${pathParams.id}/apply`,
+      body
+    );
+
+    request
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -111,7 +135,7 @@ function ApplicationFormPage() {
           value={countryValue}
         />
 
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={apllyTrip}>
           Cadastrar para trip
         </Button>
       </FlexDiv>

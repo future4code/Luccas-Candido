@@ -7,7 +7,7 @@ export const goToLoginPage = (history) => {
 };
 
 export const goToTripPage = (history) => {
-  history.push("/trips/list");
+  history.push("/trips/list/");
 };
 
 export const goToPanelPage = (history) => {
@@ -26,6 +26,6 @@ export const goToTripDetailPage = (history) => {
   history.push("/trips/details");
 };
 
-export const goToFormPage = (history) => {
-  history.push("/application-form");
+export const goToFormPage = (history, id) => {
+  history.push(`/trips/list/${id}`);
 };

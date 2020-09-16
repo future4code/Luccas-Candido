@@ -44,13 +44,6 @@ function ListTripPage() {
         >
           Voltar
         </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => goToFormPage(history)}
-        >
-          Viaje conosco
-        </Button>
       </DivButton>
       <FlexDiv>
         <Title>Confira nossas viagens disponíveis</Title>
@@ -72,6 +65,13 @@ function ListTripPage() {
                 <p>
                   <strong>Data:</strong> {trip.date}
                 </p>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => goToFormPage(history, trip.id)}
+                >
+                  Viaje conosco
+                </Button>
               </Paper>
             </DivInfos>
           );
