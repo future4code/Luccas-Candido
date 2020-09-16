@@ -3,7 +3,7 @@ import Logo from "../../imgs/logo2.svg";
 import Content1 from "../../imgs/content.svg";
 import CardInfo from "./CardInfo";
 import { useHistory } from "react-router-dom";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import {
   HeaderDiv,
@@ -15,7 +15,8 @@ import {
   ImgContent,
   Footer,
   FooterItem,
-} from "./Styles";
+  theme,
+} from "./styles";
 
 import { goToLoginPage, goToTripPage } from "../../router/goToPages";
 
@@ -28,21 +29,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import LockOpenOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import LoyaltyOutlinedIcon from "@material-ui/icons/LoyaltyOutlined";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#3f3d56",
-    },
-    secondary: {
-      main: "#3F3D56",
-    },
-  },
-});
-
 function HomePage() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
 
+  // Menu dinâmico
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

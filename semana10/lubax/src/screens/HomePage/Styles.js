@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 
 export const HeaderDiv = styled.div`
   display: flex;
@@ -69,6 +70,26 @@ export const FooterItem = styled.p`
   color: black;
 `;
 
-const Styles = () => {};
+export const DivCard = styled.div`
+  margin-bottom: 2rem;
+`;
 
-export default Styles;
+export const useStyles = makeStyles({
+  root: {
+    maxWidth: 300,
+  },
+  media: {
+    height: 140,
+  },
+});
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#3f3d56",
+    },
+    secondary: {
+      main: "#3F3D56",
+    },
+  },
+});

@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import Astronauta from "../../imgs/astronauta.jpg";
+import { DivCard, useStyles } from "./styles";
 
 // Cards
 
@@ -8,21 +8,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
-
-const DivCard = styled.div`
-  margin-bottom: 2rem;
-`;
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 300,
-  },
-  media: {
-    height: 140,
-  },
-});
 
 function CardInfo() {
   const classes = useStyles();
