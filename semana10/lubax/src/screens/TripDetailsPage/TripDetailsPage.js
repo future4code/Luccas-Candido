@@ -1,17 +1,28 @@
 import React, { useState } from "react";
+
+// Material
 import Button from "@material-ui/core/Button";
-import { goBack } from "../../router/goToPages";
-import { useHistory } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { DivButton, theme, ImgIntro, Title, FlexDiv, DivInfos } from "./styles";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import Paper from "@material-ui/core/Paper";
 import Detail from "../../imgs/details.svg";
 
+// Hooks
+import { useHistory } from "react-router-dom";
+import { useProtect } from "../../webServices/useProtect";
+
+// Routes
+import { goBack } from "../../router/goToPages";
+
+// Styled Components
+import { DivButton, theme, ImgIntro, Title, FlexDiv, DivInfos } from "./styles";
+
 function TripDetailsPage() {
   const history = useHistory();
+
   return (
     <ThemeProvider theme={theme}>
+      {/* Botão */}
       <DivButton>
         <Button
           variant="contained"
@@ -22,8 +33,12 @@ function TripDetailsPage() {
           Voltar
         </Button>
       </DivButton>
+
+      {/* Content */}
       <FlexDiv>
         <Title>Confira os detalhes de suas trips</Title>
+
+        {/* Infos Content */}
         <DivInfos>
           <Paper elevation={3}>
             <ImgIntro src={Detail} />

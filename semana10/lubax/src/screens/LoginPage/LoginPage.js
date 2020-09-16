@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { DivForm, ImgLogo, DivButton, theme } from "./styles";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import axios from "axios";
 
 function LoginPage() {
   const history = useHistory();
@@ -20,6 +21,31 @@ function LoginPage() {
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const getLogin = () => {
+    const body = {
+      email: user,
+      password: password,
+    };
+
+    const request = axios.post(
+      "https://us-central1-labenu-apis.cloudfunctions.net/labeX/luccas-jackson/login",
+      body
+    );
+
+    request
+      .then((response) => {
+        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+        history.push("/panel");
+      })
+      .catch((err) => {
+        alert("Insira os dados corretos!");
+        console.log(err);
+        setPassword("");
+        setUser("");
+      });
   };
 
   return (
@@ -53,11 +79,7 @@ function LoginPage() {
           variant="outlined"
           type="password"
         />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => goToPanelPage(history)}
-        >
+        <Button variant="contained" color="primary" onClick={getLogin}>
           Login
         </Button>
       </DivForm>

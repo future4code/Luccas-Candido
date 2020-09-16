@@ -1,19 +1,33 @@
 import React, { useState } from "react";
+
+// Material
 import { ThemeProvider } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import ImgContent from "../../imgs/createpage.svg";
-import { theme, FlexDiv, ImgIntro, DivButton, Title } from "./styles";
-import { goBack } from "../../router/goToPages";
-import { useHistory } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
+// IMG
+import ImgContent from "../../imgs/createpage.svg";
+
+// Styled Components
+import { theme, FlexDiv, ImgIntro, DivButton, Title } from "./styles";
+
+// Routes
+import { goBack } from "../../router/goToPages";
+
+// Hooks
+import { useHistory } from "react-router-dom";
+import { useProtect } from "../../webServices/useProtect";
+
 function CreateTripPage() {
+  // States
   const [nameValue, setNameValue] = useState("");
   const [namePlanet, setNamePlanet] = useState("");
   const [dateValue, setDateValue] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
   const [durationValue, setDurationValue] = useState("");
+  // ===============================================================
+
   const history = useHistory();
 
   // Inputs
@@ -36,6 +50,10 @@ function CreateTripPage() {
   const handleDuration = (event) => {
     setDurationValue(event.target.value);
   };
+
+  // Protection
+  useProtect();
+
   return (
     <ThemeProvider theme={theme}>
       <DivButton>

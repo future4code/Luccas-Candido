@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -8,15 +8,19 @@ import { goBack, goToHome } from "../../router/goToPages";
 import { useHistory } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import HomeIcon from "@material-ui/icons/Home";
+import axios from "axios";
 
 function ApplicationFormPage() {
   const history = useHistory();
+
+  // State
   const [nameValue, setNameValue] = useState("");
   const [ageValue, setAgeValue] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
   const [profValue, setProfValue] = useState("");
   const [countryValue, setCountryValue] = useState("");
 
+  // OnChange
   const handleName = (event) => {
     setNameValue(event.target.value);
     console.log(nameValue);

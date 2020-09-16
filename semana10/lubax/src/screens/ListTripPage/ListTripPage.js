@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { goBack, goToFormPage } from "../../router/goToPages";
 import { useHistory } from "react-router-dom";
@@ -7,9 +7,31 @@ import { DivButton, theme, Title, FlexDiv, DivInfos, ImgIntro } from "./styles";
 import Paper from "@material-ui/core/Paper";
 import ImgInfo from "../../imgs/listtrip.svg";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import axios from "axios";
 
 function ListTripPage() {
   const history = useHistory();
+
+  const [trip, setTrip] = useState([]);
+
+  const getTrip = () => {
+    const request = axios.get(
+      "https://us-central1-labenu-apis.cloudfunctions.net/labeX/luccas-jackson/trips"
+    );
+
+    request
+      .then((response) => {
+        console.log(response.data.trips);
+        setTrip(response.data.trips);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getTrip();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -32,26 +54,28 @@ function ListTripPage() {
       </DivButton>
       <FlexDiv>
         <Title>Confira nossas viagens disponíveis</Title>
-        <DivInfos>
-          <Paper elevation={3}>
-            <ImgIntro src={ImgInfo} />
-
-            <h1>Multi luau em Jupiter</h1>
-            <p>
-              <strong>Descrição:</strong> Noite mágica, com vista para as 69
-              luas de Jupiter
-            </p>
-            <p>
-              <strong>Planeta:</strong> Júpiter
-            </p>
-            <p>
-              <strong>Duração:</strong> 5 dias
-            </p>
-            <p>
-              <strong>Data:</strong> 25/05/2010
-            </p>
-          </Paper>
-        </DivInfos>
+        {trip.map((trip) => {
+          return (
+            <DivInfos>
+              <Paper elevation={3}>
+                <ImgIntro src={ImgInfo} />
+                <h1>{trip.name}</h1>
+                <p>
+                  <strong>Descrição:</strong> {trip.description}
+                </p>
+                <p>
+                  <strong>Planeta:</strong> {trip.planet}
+                </p>
+                <p>
+                  <strong>Duração:</strong> {trip.durationInDays} dias
+                </p>
+                <p>
+                  <strong>Data:</strong> {trip.date}
+                </p>
+              </Paper>
+            </DivInfos>
+          );
+        })}
       </FlexDiv>
     </ThemeProvider>
   );

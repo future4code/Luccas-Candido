@@ -1,17 +1,30 @@
 import React from "react";
+
+// IMG
 import Astronaut from "../../imgs/astronaut-panel.svg";
+
+// Material
 import Button from "@material-ui/core/Button";
+import { ThemeProvider } from "@material-ui/core/styles";
+
+// Hooks
+import { useProtect } from "../../webServices/useProtect";
+import { useHistory } from "react-router-dom";
+
+// Routes
 import {
   goToHome,
   goToCreateTripPage,
   goToTripDetailPage,
 } from "../../router/goToPages";
-import { useHistory } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
+
+// Styled Component
 import { ImgIntro, ExtDiv, Title, DivButton, theme } from "./styles";
 
 function AdmPanel() {
   const history = useHistory();
+
+  useProtect();
   return (
     <ThemeProvider theme={theme}>
       <ExtDiv>
