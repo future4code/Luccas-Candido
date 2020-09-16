@@ -1,7 +1,11 @@
 import React from "react";
 import Astronaut from "../../imgs/astronaut-panel.svg";
 import Button from "@material-ui/core/Button";
-import { goToHome, goToCreateTripPage } from "../../router/goToPages";
+import {
+  goToHome,
+  goToCreateTripPage,
+  goToTripDetailPage,
+} from "../../router/goToPages";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { ImgIntro, ExtDiv, Title, DivButton, theme } from "./styles";
@@ -24,7 +28,11 @@ function AdmPanel() {
           >
             Criar viagem
           </Button>
-          <Button variant="outlined" color="primary">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => goToTripDetailPage(history)}
+          >
             Ver Detalhes das viagens
           </Button>
           <Button

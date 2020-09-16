@@ -31,8 +31,5 @@ export const theme = createMuiTheme({
     primary: {
       main: "#3f3d56",
     },
-    secondary: {
-      main: "#3F3D56",
-    },
   },
 });
