@@ -6,6 +6,7 @@ import ImgContent from "../../imgs/createpage.svg";
 import { theme, FlexDiv, ImgIntro, DivButton, Title } from "./styles";
 import { goBack } from "../../router/goToPages";
 import { useHistory } from "react-router-dom";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 function CreateTripPage() {
   const [nameValue, setNameValue] = useState("");
@@ -42,6 +43,7 @@ function CreateTripPage() {
           variant="contained"
           color="primary"
           onClick={() => goBack(history)}
+          startIcon={<KeyboardBackspaceIcon />}
         >
           Voltar
         </Button>

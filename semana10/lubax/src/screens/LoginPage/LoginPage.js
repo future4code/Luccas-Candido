@@ -6,6 +6,7 @@ import { goBack, goToPanelPage } from "../../router/goToPages";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { DivForm, ImgLogo, DivButton, theme } from "./styles";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 function LoginPage() {
   const history = useHistory();
@@ -28,6 +29,7 @@ function LoginPage() {
           variant="contained"
           color="primary"
           onClick={() => goBack(history)}
+          startIcon={<KeyboardBackspaceIcon />}
         >
           Voltar
         </Button>

@@ -3,8 +3,8 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 export const DivButton = styled.div`
   display: flex;
-  justify-content: flex-start;
-  margin: 1rem 0 0 1rem;
+  justify-content: space-between;
+  margin: 1rem 1rem;
 `;
 
 export const theme = createMuiTheme({
@@ -16,7 +16,7 @@ export const theme = createMuiTheme({
 });
 
 export const ImgIntro = styled.img`
-  width: 50%;
+  width: 70%;
   margin: 2rem 0;
 `;
 
