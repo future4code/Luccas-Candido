@@ -15,45 +15,31 @@ function ApplicationFormPage() {
   const pathParams = useParams();
 
   // State
-  const [nameValue, setNameValue] = useState("");
-  const [ageValue, setAgeValue] = useState("");
-  const [descriptionValue, setDescriptionValue] = useState("");
-  const [profValue, setProfValue] = useState("");
-  const [countryValue, setCountryValue] = useState("");
+  const { form, onChange, resetState } = useForm({
+    name: "",
+    age: "",
+    description: "",
+    profession: "",
+    country: "",
+  });
 
-  // OnChange
-  const handleName = (event) => {
-    setNameValue(event.target.value);
-    console.log(nameValue);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    resetState();
   };
 
-  const handleAge = (event) => {
-    setAgeValue(event.target.value);
-    console.log(ageValue);
-  };
-
-  const handleDescription = (event) => {
-    setDescriptionValue(event.target.value);
-    console.log(descriptionValue);
-  };
-
-  const handleProf = (event) => {
-    setProfValue(event.target.value);
-    console.log(profValue);
-  };
-
-  const handleCountry = (event) => {
-    setCountryValue(event.target.value);
-    console.log(countryValue);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    onChange(name, value);
   };
 
   const apllyTrip = () => {
     const body = {
-      name: nameValue,
-      age: ageValue,
-      applicationText: descriptionValue,
-      profession: profValue,
-      country: countryValue,
+      name: form.name,
+      age: form.age,
+      applicationText: form.description,
+      profession: form.profession,
+      country: form.country,
     };
 
     const request = axios.post(
@@ -67,6 +53,7 @@ function ApplicationFormPage() {
       })
       .catch((err) => {
         console.log(err);
+        resetState();
       });
   };
 
@@ -91,54 +78,69 @@ function ApplicationFormPage() {
           Home
         </Button>
       </DivButton>
-      <FlexDiv>
-        <Title>Cadastre-se para nossas viagens!</Title>
+      <form onSubmit={handleSubmit}>
+        <FlexDiv>
+          <Title>Cadastre-se para nossas viagens!</Title>
 
-        <ImgIntro src={ImgContent} />
+          <ImgIntro src={ImgContent} />
 
-        <TextField
-          id="outlined-basic"
-          label="Nome"
-          variant="outlined"
-          onChange={handleName}
-          value={nameValue}
-        />
-        <TextField
-          id="outlined-basic"
-          label="Idade"
-          variant="outlined"
-          type="number"
-          onChange={handleAge}
-          value={ageValue}
-        />
-        <TextField
-          id="outlined-basic"
-          label="Escreva pra gente"
-          variant="outlined"
-          onChange={handleDescription}
-          value={descriptionValue}
-        />
+          <TextField
+            id="outlined-basic"
+            label="Nome"
+            variant="outlined"
+            onChange={handleInputChange}
+            type="text"
+            value={form.name}
+            name="name"
+            required
+          />
+          <TextField
+            id="outlined-basic"
+            label="Idade"
+            variant="outlined"
+            type="number"
+            onChange={handleInputChange}
+            value={form.age}
+            name="age"
+          />
+          <TextField
+            id="outlined-basic"
+            label="Escreva pra gente"
+            variant="outlined"
+            onChange={handleInputChange}
+            value={form.description}
+            required
+            type="text"
+            name="description"
+          />
 
-        <TextField
-          id="outlined-basic"
-          label="Profissão"
-          variant="outlined"
-          onChange={handleProf}
-          value={profValue}
-        />
+          <TextField
+            id="outlined-basic"
+            label="Profissão"
+            variant="outlined"
+            onChange={handleInputChange}
+            value={form.profession}
+            required
+            type="text"
+            name="profession"
+          />
 
-        <TextField
-          id="outlined-basic"
-          label="País"
-          variant="outlined"
-          onChange={handleCountry}
-          value={countryValue}
-        />
+          <TextField
+            id="outlined-basic"
+            label="País"
+            variant="outlined"
+            onChange={handleInputChange}
+            value={form.country}
+            required
+            type="text"
+            name="country"
+          />
 
-        <Button variant="contained" color="primary" onClick={apllyTrip}>
-          Cadastrar para trip
-        </Button>
-      </FlexDiv>
+          <Button variant="contained" color="primary" onClick={apllyTrip}>
+            Cadastrar para trip
+          </Button>
+        </FlexDiv>
+      </form>
     </ThemeProvider>
   );
 }

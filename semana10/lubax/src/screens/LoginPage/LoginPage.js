@@ -1,32 +1,48 @@
 import React, { useState, useEffect } from "react";
+
+// Material
 import TextField from "@material-ui/core/TextField";
-import Logo from "../../imgs/logo2.svg";
-import Button from "@material-ui/core/Button";
-import { goBack, goToPanelPage } from "../../router/goToPages";
-import { useHistory } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { DivForm, ImgLogo, DivButton, theme } from "./styles";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import Button from "@material-ui/core/Button";
+
+// Hooks
+import { useHistory } from "react-router-dom";
+import { useForm } from "../../webServices/useForm";
+// IMG
+import Logo from "../../imgs/logo2.svg";
+
+// Routs
+import { goBack } from "../../router/goToPages";
+
+// Styled
+import { DivForm, ImgLogo, DivButton, theme } from "./styles";
 import axios from "axios";
 
 function LoginPage() {
   const history = useHistory();
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  // const [user, setUser] = useState("");
+  // const [password, setPassword] = useState("");
+
+  const { form, onChange, resetState } = useForm({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    resetState();
+  };
 
   // Onchange
-  const handleUser = (e) => {
-    setUser(e.target.value);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    onChange(name, value);
   };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
   const getLogin = () => {
     const body = {
-      email: user,
-      password: password,
+      email: form.email,
+      password: form.password,
     };
 
     const request = axios.post(
@@ -43,8 +59,7 @@ function LoginPage() {
       .catch((err) => {
         alert("Insira os dados corretos!");
         console.log(err);
-        setPassword("");
-        setUser("");
+        resetState();
       });
   };
 
@@ -70,27 +85,34 @@ function LoginPage() {
       </DivButton>
 
       {/* Inputs */}
-      <DivForm>
-        <ImgLogo src={Logo} />
-        <TextField
-          value={user}
-          onChange={handleUser}
-          id="outlined-basic"
-          label="User"
-          variant="outlined"
-        />
-        <TextField
-          value={password}
-          onChange={handlePassword}
-          color="primary"
-          label="Password"
-          variant="outlined"
-          type="password"
-        />
-        <Button variant="contained" color="primary" onClick={getLogin}>
-          Login
-        </Button>
-      </DivForm>
+      <form onSubmit={handleSubmit}>
+        <DivForm>
+          <ImgLogo src={Logo} />
+          <TextField
+            required
+            type="email"
+            value={form.email}
+            onChange={handleInputChange}
+            id="outlined-basic"
+            label="User"
+            variant="outlined"
+            name="email"
+          />
+          <TextField
+            required
+            value={form.password}
+            onChange={handleInputChange}
+            color="primary"
+            label="Password"
+            variant="outlined"
+            type="password"
+            name="password"
+          />
+          <Button variant="contained" color="primary" onClick={getLogin}>
+            Login
+          </Button>
+        </DivForm>
+      </form>
     </ThemeProvider>
   );
 }
