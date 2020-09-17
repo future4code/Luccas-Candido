@@ -6,9 +6,10 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import Paper from "@material-ui/core/Paper";
 import Detail from "../../imgs/details.svg";
+import axios from "axios";
 
 // Hooks
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useProtect } from "../../webServices/useProtect";
 
 // Routes
@@ -20,6 +21,13 @@ import { DivButton, theme, ImgIntro, Title, FlexDiv, DivInfos } from "./styles";
 function TripDetailsPage() {
   const history = useHistory();
 
+  const getDetail = () => {
+    const request = axios.get(
+      "https://us-central1-labenu-apis.cloudfunctions.net/labeX/luccas-jackson/trip/:id"
+    );
+  };
+
+  useProtect();
   return (
     <ThemeProvider theme={theme}>
       {/* Botão */}

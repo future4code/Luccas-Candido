@@ -13,6 +13,7 @@ function ListTripPage() {
   const history = useHistory();
 
   const [trip, setTrip] = useState([]);
+  const [tripId, setTripId] = useState({});
 
   const getTrip = () => {
     const request = axios.get(
@@ -23,6 +24,8 @@ function ListTripPage() {
       .then((response) => {
         console.log(response.data.trips);
         setTrip(response.data.trips);
+        setTripId(response.data.trips.id);
+        console.log(response.data.trips.id);
       })
       .catch((err) => {
         console.log(err);
@@ -30,6 +33,11 @@ function ListTripPage() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      history.push(`/trips/details/${tripId}`);
+    }
+
     getTrip();
   }, []);
 

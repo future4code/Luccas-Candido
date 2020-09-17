@@ -9,6 +9,7 @@ import { useHistory, useParams } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
+import { useForm } from "../../webServices/useForm";
 
 function ApplicationFormPage() {
   const history = useHistory();
@@ -50,6 +51,7 @@ function ApplicationFormPage() {
     request
       .then((response) => {
         console.log(response.data);
+        resetState();
       })
       .catch((err) => {
         console.log(err);
@@ -92,6 +94,7 @@ function ApplicationFormPage() {
             type="text"
             value={form.name}
             name="name"
+            pattern="[A-Za-z]{3,}"
             required
           />
           <TextField
@@ -102,6 +105,7 @@ function ApplicationFormPage() {
             onChange={handleInputChange}
             value={form.age}
             name="age"
+            required
           />
           <TextField
             id="outlined-basic"

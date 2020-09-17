@@ -22,8 +22,8 @@ export const goToCreateTripPage = (history) => {
   history.push("/trips/create");
 };
 
-export const goToTripDetailPage = (history) => {
-  history.push("/trips/details");
+export const goToTripDetailPage = (history, id) => {
+  history.push(`/trips/details/$`);
 };
 
 export const goToFormPage = (history, id) => {
