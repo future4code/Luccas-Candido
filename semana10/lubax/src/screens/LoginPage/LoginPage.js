@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Logo from "../../imgs/logo2.svg";
 import Button from "@material-ui/core/Button";
@@ -47,6 +47,14 @@ function LoginPage() {
         setUser("");
       });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      history.push("/panel");
+    }
+  }, [history]);
 
   return (
     <ThemeProvider theme={theme}>
