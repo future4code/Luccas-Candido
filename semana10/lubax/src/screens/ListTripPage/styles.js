@@ -44,3 +44,7 @@ export const DivInfos = styled.div`
   width: 80%;
   margin-top: 2rem;
 `;
+
+export const DivButtonDetail = styled.div`
+  margin: 2rem 0;
+`;

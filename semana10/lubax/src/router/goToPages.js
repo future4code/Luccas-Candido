@@ -23,7 +23,7 @@ export const goToCreateTripPage = (history) => {
 };
 
 export const goToTripDetailPage = (history, id) => {
-  history.push(`/trips/details/$`);
+  history.push(`/trips/details/${id}`);
 };
 
 export const goToFormPage = (history, id) => {

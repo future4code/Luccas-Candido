@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 // Material
 import TextField from "@material-ui/core/TextField";
@@ -21,8 +21,6 @@ import axios from "axios";
 
 function LoginPage() {
   const history = useHistory();
-  // const [user, setUser] = useState("");
-  // const [password, setPassword] = useState("");
 
   const { form, onChange, resetState } = useForm({
     email: "",
