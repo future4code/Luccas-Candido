@@ -12,44 +12,45 @@ import { useProtect } from "../../webServices/useProtect";
 import { useHistory } from "react-router-dom";
 
 // Routes
-import {
-  goToHome,
-  goToCreateTripPage,
-  goToTripDetailPage,
-} from "../../router/goToPages";
+import { goToHome, goToCreateTripPage } from "../../router/goToPages";
 
 // Styled Component
 import { ImgIntro, ExtDiv, Title, DivButton, theme } from "./styles";
 
 function AdmPanel() {
   const history = useHistory();
+  const token = localStorage.getItem("token");
 
   useProtect();
+
   return (
     <ThemeProvider theme={theme}>
-      <ExtDiv>
-        <ImgIntro src={Astronaut} />
+      {/* A página tava renderizando e aparecia algumas infos, fiz isso \/ */}
+      {token !== null && (
+        <ExtDiv>
+          <ImgIntro src={Astronaut} />
 
-        <Title>Bem vindo(a) ao seu painel de controle!</Title>
-        <DivButton>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => {
-              goToCreateTripPage(history);
-            }}
-          >
-            Criar viagem
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => goToHome(history)}
-          >
-            Voltar a página inicial
-          </Button>
-        </DivButton>
-      </ExtDiv>
+          <Title>Bem vindo(a) ao seu painel de controle!</Title>
+          <DivButton>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                goToCreateTripPage(history);
+              }}
+            >
+              Criar viagem
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => goToHome(history)}
+            >
+              Voltar a página inicial
+            </Button>
+          </DivButton>
+        </ExtDiv>
+      )}
     </ThemeProvider>
   );
 }

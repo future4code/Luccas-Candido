@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+// Material
 import Button from "@material-ui/core/Button";
+import { ThemeProvider } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import ImgInfo from "../../imgs/listtrip.svg";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+
+// Pages
 import {
   goBack,
   goToFormPage,
   goToTripDetailPage,
 } from "../../router/goToPages";
+
+// Hooks
 import { useHistory } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
+
+// Styled
 import {
   DivButton,
   theme,
@@ -16,10 +28,6 @@ import {
   ImgIntro,
   DivButtonDetail,
 } from "./styles";
-import Paper from "@material-ui/core/Paper";
-import ImgInfo from "../../imgs/listtrip.svg";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import axios from "axios";
 
 function ListTripPage() {
   const history = useHistory();
@@ -34,7 +42,6 @@ function ListTripPage() {
 
     request
       .then((response) => {
-        console.log(response.data.trips);
         setTrip(response.data.trips);
       })
       .catch((err) => {
@@ -48,6 +55,7 @@ function ListTripPage() {
 
   return (
     <ThemeProvider theme={theme}>
+      {/* Se tiver autorização, renderiza uma página com acesso aos detalhes */}
       {token && (
         <div>
           <DivButton>
@@ -97,6 +105,7 @@ function ListTripPage() {
         </div>
       )}
 
+      {/* Se não tiver autorização, vê os detalhes das viagens e aplica pro form. */}
       {token === null && (
         <div>
           <DivButton>

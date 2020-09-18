@@ -46,7 +46,6 @@ function TripDetailsPage() {
 
     request
       .then((response) => {
-        console.log(response.data.trip);
         setTrip(response.data.trip);
         setCandidates(response.data.trip.candidates);
       })

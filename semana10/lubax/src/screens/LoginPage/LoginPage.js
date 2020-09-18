@@ -37,6 +37,8 @@ function LoginPage() {
     const { name, value } = event.target;
     onChange(name, value);
   };
+
+  // requisição login
   const getLogin = () => {
     const body = {
       email: form.email,
@@ -50,7 +52,6 @@ function LoginPage() {
 
     request
       .then((response) => {
-        console.log(response.data);
         localStorage.setItem("token", response.data.token);
         history.push("/panel");
       })
@@ -61,6 +62,7 @@ function LoginPage() {
       });
   };
 
+  // Se já tiver logado, a página de login não aparece.
   useEffect(() => {
     const token = localStorage.getItem("token");
 

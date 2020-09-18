@@ -1,21 +1,30 @@
 import React from "react";
+import axios from "axios";
+
+// Material
 import { ThemeProvider } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import ImgContent from "../../imgs/formapp.svg";
-import { theme, FlexDiv, ImgIntro, DivButton, Title } from "./styles";
-import { goBack, goToHome } from "../../router/goToPages";
-import { useHistory, useParams } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import HomeIcon from "@material-ui/icons/Home";
-import axios from "axios";
+
+// Imgs
+import ImgContent from "../../imgs/formapp.svg";
+
+// Styled
+import { theme, FlexDiv, ImgIntro, DivButton, Title } from "./styles";
+
+// Pages
+import { goBack, goToHome } from "../../router/goToPages";
+
+// Hooks
+import { useHistory, useParams } from "react-router-dom";
 import { useForm } from "../../webServices/useForm";
 
 function ApplicationFormPage() {
   const history = useHistory();
   const pathParams = useParams();
 
-  // State
   const { form, onChange, resetState } = useForm({
     name: "",
     age: "",
@@ -50,7 +59,6 @@ function ApplicationFormPage() {
 
     request
       .then((response) => {
-        console.log(response.data);
         resetState();
       })
       .catch((err) => {

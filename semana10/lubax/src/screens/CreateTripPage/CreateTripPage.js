@@ -74,7 +74,6 @@ function CreateTripPage() {
 
     request
       .then((response) => {
-        console.log(response);
         alert("Trip criada com sucesso!");
         resetState();
       })
