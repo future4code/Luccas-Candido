@@ -23,7 +23,7 @@ export const DivButton = styled.div`
   display: flex;
   flex-direction: column;
   height: 30vh;
-  justify-content: space-around;
+  justify-content: space-evenly;
 `;
 
 export const theme = createMuiTheme({

@@ -42,13 +42,6 @@ function AdmPanel() {
             Criar viagem
           </Button>
           <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => goToTripDetailPage(history)}
-          >
-            Ver Detalhes das viagens
-          </Button>
-          <Button
             variant="contained"
             color="primary"
             onClick={() => goToHome(history)}
