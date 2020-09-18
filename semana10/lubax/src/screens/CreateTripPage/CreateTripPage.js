@@ -79,7 +79,6 @@ function CreateTripPage() {
       })
       .catch((err) => {
         console.log(err);
-        resetState();
       });
   };
 
@@ -100,7 +99,7 @@ function CreateTripPage() {
 
         <ImgIntro src={ImgContent} />
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidade={false}>
           <DivForm>
             <TextField
               value={form.name}
@@ -109,6 +108,11 @@ function CreateTripPage() {
               variant="outlined"
               type="text"
               name="name"
+              inputProps={{
+                pattern: "[A-Za-z]{5,}",
+                title: "No mínimo 5 letras",
+              }}
+              required
             />
 
             <FormControl variant="outlined">
@@ -121,6 +125,7 @@ function CreateTripPage() {
                 onChange={handleInputChange}
                 label="Planetas"
                 name="planet"
+                required
               >
                 <MenuItem value={"Mercúrio"}>Mercúrio</MenuItem>
                 <MenuItem value={"Vênus"}>Vênus</MenuItem>
@@ -139,6 +144,7 @@ function CreateTripPage() {
               onChange={handleInputChange}
               name="date"
               type="text"
+              required
             />
 
             <TextField
@@ -148,6 +154,7 @@ function CreateTripPage() {
               onChange={handleInputChange}
               name="description"
               type="text"
+              required
             />
 
             <TextField
@@ -158,9 +165,15 @@ function CreateTripPage() {
               onChange={handleInputChange}
               name="duration"
               type="number"
+              required
             />
           </DivForm>
-          <Button variant="contained" color="primary" onClick={createTrip}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={createTrip}
+            type="submit"
+          >
             Criar trip
           </Button>
         </form>

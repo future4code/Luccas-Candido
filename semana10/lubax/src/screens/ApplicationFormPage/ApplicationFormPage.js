@@ -59,11 +59,11 @@ function ApplicationFormPage() {
 
     request
       .then((response) => {
+        alert("Cadastrado com sucesso!");
         resetState();
       })
       .catch((err) => {
         console.log(err);
-        resetState();
       });
   };
 
@@ -102,7 +102,10 @@ function ApplicationFormPage() {
             type="text"
             value={form.name}
             name="name"
-            pattern="[A-Za-z]{3,}"
+            inputProps={{
+              pattern: "[A-Za-z]{3,}",
+              title: "No mínimo 3 letras",
+            }}
             required
           />
           <TextField
@@ -148,7 +151,12 @@ function ApplicationFormPage() {
             name="country"
           />
 
-          <Button variant="contained" color="primary" onClick={apllyTrip}>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={apllyTrip}
+          >
             Cadastrar para trip
           </Button>
         </FlexDiv>

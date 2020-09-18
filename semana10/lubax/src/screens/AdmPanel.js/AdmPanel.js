@@ -12,7 +12,11 @@ import { useProtect } from "../../webServices/useProtect";
 import { useHistory } from "react-router-dom";
 
 // Routes
-import { goToHome, goToCreateTripPage } from "../../router/goToPages";
+import {
+  goToHome,
+  goToCreateTripPage,
+  goToTripPage,
+} from "../../router/goToPages";
 
 // Styled Component
 import { ImgIntro, ExtDiv, Title, DivButton, theme } from "./styles";
@@ -33,13 +37,20 @@ function AdmPanel() {
           <Title>Bem vindo(a) ao seu painel de controle!</Title>
           <DivButton>
             <Button
-              variant="outlined"
+              variant="contained"
               color="primary"
               onClick={() => {
                 goToCreateTripPage(history);
               }}
             >
               Criar viagem
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => goToTripPage(history)}
+            >
+              Viagens
             </Button>
             <Button
               variant="contained"

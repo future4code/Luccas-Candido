@@ -33,7 +33,6 @@ function TripDetailsPage() {
 
   const [trip, setTrip] = useState({});
   const [candidates, setCandidates] = useState([]);
-  const [candidatesId, setCandidatesId] = useState("");
 
   const getDetail = () => {
     const request = axios.get(
@@ -49,7 +48,6 @@ function TripDetailsPage() {
       .then((response) => {
         setTrip(response.data.trip);
         setCandidates(response.data.trip.candidates);
-        console.log(response.data.trip.candidates);
       })
       .catch((err) => {
         console.log(err);
@@ -74,6 +72,15 @@ function TripDetailsPage() {
     request
       .then((response) => {
         console.log(response);
+
+        // Resposta ao adm quando a aprovação/rejeição for feita.
+        if (body.approve === true) {
+          alert("Candidato aprovado!");
+        } else {
+          alert("Candidato reprovado!");
+        }
+
+        getDetail();
       })
       .catch((err) => {
         console.log(err);
