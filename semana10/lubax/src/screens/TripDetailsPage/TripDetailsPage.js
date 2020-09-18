@@ -96,28 +96,31 @@ function TripDetailsPage() {
               <strong>Data:</strong> {trip.date}
             </p>
           </Paper>
-          {candidates === null && <h2>Candidatos</h2>}
-          {candidates.map((c) => {
-            return (
-              <DivCand>
-                <p>
-                  <strong>Nome: </strong> {c.name}
-                </p>
-                <p>
-                  <strong>Idade: </strong> {c.age}
-                </p>
-                <p>
-                  <strong>Profissão: </strong> {c.profession}
-                </p>
-                <p>
-                  <strong>País: </strong> {c.country}
-                </p>
-                <Parag>
-                  <strong>Texto de aplicação: </strong> {c.applicationText}
-                </Parag>
-              </DivCand>
-            );
-          })}
+
+          {candidates.length === 0 && <h2>Sem candidatos!</h2>}
+          {candidates.length > 0 && <h2>Candidatos</h2>}
+          {candidates.length > 0 &&
+            candidates.map((c) => {
+              return (
+                <DivCand>
+                  <p>
+                    <strong>Nome: </strong> {c.name}
+                  </p>
+                  <p>
+                    <strong>Idade: </strong> {c.age}
+                  </p>
+                  <p>
+                    <strong>Profissão: </strong> {c.profession}
+                  </p>
+                  <p>
+                    <strong>País: </strong> {c.country}
+                  </p>
+                  <Parag>
+                    <strong>Texto de aplicação: </strong> {c.applicationText}
+                  </Parag>
+                </DivCand>
+              );
+            })}
         </DivInfos>
       </FlexDiv>
     </ThemeProvider>

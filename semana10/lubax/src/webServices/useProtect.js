@@ -10,5 +10,5 @@ export const useProtect = () => {
     if (token === null) {
       history.push("/");
     }
-  }, []);
+  }, [history]);
 };
