@@ -33,6 +33,7 @@ function TripDetailsPage() {
 
   const [trip, setTrip] = useState({});
   const [candidates, setCandidates] = useState([]);
+  const [candidatesId, setCandidatesId] = useState("");
 
   const getDetail = () => {
     const request = axios.get(
@@ -48,6 +49,31 @@ function TripDetailsPage() {
       .then((response) => {
         setTrip(response.data.trip);
         setCandidates(response.data.trip.candidates);
+        console.log(response.data.trip.candidates);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const decide = (choice, idCandidate) => {
+    const body = {
+      approve: choice,
+    };
+
+    const request = axios.put(
+      `https://us-central1-labenu-apis.cloudfunctions.net/labeX/luccas-jackson/trips/${pathParams.id}/candidates/${idCandidate}/decide`,
+      body,
+      {
+        headers: {
+          auth: localStorage.getItem("token"),
+        },
+      }
+    );
+
+    request
+      .then((response) => {
+        console.log(response);
       })
       .catch((err) => {
         console.log(err);
@@ -116,6 +142,12 @@ function TripDetailsPage() {
                   </p>
                   <Parag>
                     <strong>Texto de aplicação: </strong> {c.applicationText}
+                    <Button color="primary" onClick={() => decide(true, c.id)}>
+                      Aprovar
+                    </Button>
+                    <Button color="primary" onClick={() => decide(false, c.id)}>
+                      Reprovar
+                    </Button>
                   </Parag>
                 </DivCand>
               );

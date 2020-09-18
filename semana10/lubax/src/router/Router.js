@@ -1,5 +1,9 @@
 import React from "react";
+
+// Router
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+// Pages
 import ApplicationFormPage from "../screens/ApplicationFormPage/ApplicationFormPage";
 import CreateTripPage from "../screens/CreateTripPage/CreateTripPage";
 import HomePage from "../screens/HomePage/HomePage";
