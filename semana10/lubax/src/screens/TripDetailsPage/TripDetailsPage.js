@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Material
 import Button from "@material-ui/core/Button";
@@ -16,16 +16,48 @@ import { useProtect } from "../../webServices/useProtect";
 import { goBack } from "../../router/goToPages";
 
 // Styled Components
-import { DivButton, theme, ImgIntro, Title, FlexDiv, DivInfos } from "./styles";
+import {
+  DivButton,
+  theme,
+  ImgIntro,
+  Title,
+  FlexDiv,
+  DivInfos,
+  DivCand,
+  Parag,
+} from "./styles";
 
 function TripDetailsPage() {
   const history = useHistory();
+  const pathParams = useParams();
+
+  const [trip, setTrip] = useState({});
+  const [candidates, setCandidates] = useState([]);
 
   const getDetail = () => {
     const request = axios.get(
-      "https://us-central1-labenu-apis.cloudfunctions.net/labeX/luccas-jackson/trip/:id"
+      `https://us-central1-labenu-apis.cloudfunctions.net/labeX/luccas-jackson/trip/${pathParams.id}`,
+      {
+        headers: {
+          auth: localStorage.getItem("token"),
+        },
+      }
     );
+
+    request
+      .then((response) => {
+        console.log(response.data.trip);
+        setTrip(response.data.trip);
+        setCandidates(response.data.trip.candidates);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  useEffect(() => {
+    getDetail();
+  }, []);
 
   useProtect();
   return (
@@ -50,21 +82,42 @@ function TripDetailsPage() {
         <DivInfos>
           <Paper elevation={3}>
             <ImgIntro src={Detail} />
-            <h1>Multi luau em Jupiter</h1>
+            <h1>{trip.name}</h1>
             <p>
-              <strong>Descrição:</strong> Noite mágica, com vista para as 69
-              luas de Jupiter
+              <strong>Descrição:</strong> {trip.description}
             </p>
             <p>
-              <strong>Planeta:</strong> Júpiter
+              <strong>Planeta:</strong> {trip.planet}
             </p>
             <p>
-              <strong>Duração:</strong> 5 dias
+              <strong>Duração:</strong> {trip.durationInDays} dias
             </p>
             <p>
-              <strong>Data:</strong> 25/05/2010
+              <strong>Data:</strong> {trip.date}
             </p>
           </Paper>
+          <h2>Candidatos</h2>
+          {candidates.map((c) => {
+            return (
+              <DivCand>
+                <p>
+                  <strong>Nome: </strong> {c.name}
+                </p>
+                <p>
+                  <strong>Idade: </strong> {c.age}
+                </p>
+                <p>
+                  <strong>Profissão: </strong> {c.profession}
+                </p>
+                <p>
+                  <strong>País: </strong> {c.country}
+                </p>
+                <Parag>
+                  <strong>Texto de aplicação: </strong> {c.applicationText}
+                </Parag>
+              </DivCand>
+            );
+          })}
         </DivInfos>
       </FlexDiv>
     </ThemeProvider>

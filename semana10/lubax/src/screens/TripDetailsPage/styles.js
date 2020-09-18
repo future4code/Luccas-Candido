@@ -44,3 +44,13 @@ export const DivInfos = styled.div`
   width: 80%;
   margin-top: 2rem;
 `;
+
+export const DivCand = styled.div`
+  width: 80%;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #3f3d56;
+`;
+
+export const Parag = styled.p`
+  margin-bottom: 10px;
+`;
