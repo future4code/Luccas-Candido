@@ -96,7 +96,7 @@ function TripDetailsPage() {
               <strong>Data:</strong> {trip.date}
             </p>
           </Paper>
-          <h2>Candidatos</h2>
+          {candidates === null && <h2>Candidatos</h2>}
           {candidates.map((c) => {
             return (
               <DivCand>
