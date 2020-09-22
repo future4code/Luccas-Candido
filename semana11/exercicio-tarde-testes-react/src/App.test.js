@@ -4,13 +4,13 @@ import App from "./App";
 
 // 1. Teste
 test("Botão adicionar post", () => {
-  const { getByPlaceholderText } = render(<App />);
+  const { getByText, getByPlaceholderText } = render(<App />);
 
-  const postButton = getByPlaceholderText(/Novo Post/i);
+  const postButton = getByText(/Adicionar/i);
 
   fireEvent.click(postButton);
 
-  let text = getByText(/Erro/i);
+  const text = getByPlaceholderText(/Novo Post/i);
 
   expect(text).toHaveTextContent("Erro");
 });
