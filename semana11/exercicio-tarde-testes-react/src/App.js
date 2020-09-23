@@ -89,6 +89,7 @@ const App = () => {
               post={post}
               toggleLike={toggleLike}
               deletePost={deletePost}
+              data-testid={"teste"}
             />
           );
         })}
