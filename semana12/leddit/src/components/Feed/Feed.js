@@ -14,6 +14,7 @@ function Feed() {
     <ContainerAll>
       <ContainerPost>
         <CardPost />
+        <CardPost />
       </ContainerPost>
     </ContainerAll>
   );

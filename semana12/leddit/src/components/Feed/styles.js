@@ -45,6 +45,7 @@ export const PostContainer = styled.div`
   height: auto;
   width: 50%;
   border: 1px solid black;
+  margin-top: 2rem;
 `;
 
 export const DetailContainer = styled.div`
