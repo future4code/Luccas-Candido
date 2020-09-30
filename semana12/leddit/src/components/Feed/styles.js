@@ -61,6 +61,7 @@ export const Icon = styled(ChatBubbleIcon)`
   cursor: pointer;
   color: #878a8c;
   margin-right: 1rem;
+  width: 2vw;
   &:hover {
     background-color: #efefef;
   }
@@ -68,6 +69,25 @@ export const Icon = styled(ChatBubbleIcon)`
 
 export const ArrowUp = styled(ArrowUpwardIcon)`
   cursor: pointer;
+  &:hover {
+    background-color: #efefef;
+  }
+  &:checked {
+    color: orange;
+  }
+`;
+
+export const ArrowUpClick = styled(ArrowUpwardIcon)`
+  cursor: pointer;
+  color: orange;
+  &:hover {
+    background-color: #efefef;
+  }
+`;
+
+export const ArrowDownClick = styled(ArrowDownwardIcon)`
+  cursor: pointer;
+  color: orange;
   &:hover {
     background-color: #efefef;
   }
@@ -84,6 +104,12 @@ export const ContainerAll = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const CommentTitle = styled.p`
+  font-size: 0.675rem;
+  color: #a9a9a9;
+  font-weight: bold;
 `;
 
 export const ContainerPost = styled.div`
@@ -125,10 +151,16 @@ export const DivUpDown = styled.div`
   flex-direction: column;
   align-items: center;
   display: flex;
+  padding-top: 1rem;
+`;
+
+export const TimeTitle = styled.p`
+  font-size: 0.675rem;
+  color: #a9a9a9;
 `;
 
 export const TitleCard = styled.h1`
-  font-size: 4vw;
+  font-size: 2vw;
   font-weight: bold;
   font-family: Verdana;
   color: black;

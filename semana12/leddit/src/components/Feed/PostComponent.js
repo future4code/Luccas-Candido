@@ -45,6 +45,7 @@ function PostComponent(props) {
     request
       .then((response) => {
         console.log(response);
+        props.getPost();
         resetState();
       })
       .catch((err) => {
@@ -72,7 +73,7 @@ function PostComponent(props) {
           <TextArea
             aria-label="maximum height"
             rowsMin={5}
-            placeholder="Escreva seu post"
+            placeholder="Write your post"
             value={form.text}
             name={"text"}
             onChange={handleInputChange}

@@ -60,9 +60,17 @@ function Feed() {
         </Header>
         <ContainerAll>
           <ContainerPost>
-            <PostComponent />
+            <PostComponent getPost={getPost} />
             {posts.map((post) => {
-              return <CardPost title={post.title} text={post.text} />;
+              return (
+                <CardPost
+                  title={post.title}
+                  text={post.text}
+                  username={post.username}
+                  post={post}
+                  postId={post.id}
+                />
+              );
             })}
           </ContainerPost>
         </ContainerAll>
