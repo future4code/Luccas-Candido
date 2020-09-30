@@ -67,7 +67,7 @@ export const Header = styled.header`
   background-color: white;
   -webkit-box-shadow: 10px 10px 5px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 5px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: -8px -13px 6px 13px rgba(0, 0, 0, 0.75);
   width: 100%;
   height: 12vh;
 `;

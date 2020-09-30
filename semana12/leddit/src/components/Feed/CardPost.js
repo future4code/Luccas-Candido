@@ -11,9 +11,11 @@ import {
   Icon,
   ArrowUp,
   ArrowDown,
+  TitleCard,
+  TextPara,
 } from "./styles";
 
-function CardPost() {
+function CardPost(props) {
   const history = useHistory();
 
   return (
@@ -25,16 +27,8 @@ function CardPost() {
       </DivUpDown>
 
       <DetailContainer>
-        <h1>Post exemplo xD</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-          efficitur pretium nulla ac elementum. Duis fermentum non ipsum ut
-          suscipit. Sed at ligula eu arcu mollis convallis sit amet a orci. Nam
-          dapibus dolor et est fringilla, at maximus dolor dictum. Praesent
-          fermentum ligula nec est vestibulum, vel pharetra nulla scelerisque.
-          Donec tincidunt quis augue ac viverra. Cras congue bibendum nibh, a
-          aliquam sem molestie in.
-        </p>
+        <TitleCard>{props.title}</TitleCard>
+        <TextPara>{props.text}</TextPara>
         <CommentsContainer>
           <p>
             <Icon onClick={() => goToSignUpPage(history)} /> 0 comentários

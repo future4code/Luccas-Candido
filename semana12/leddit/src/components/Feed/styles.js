@@ -1,9 +1,62 @@
 import styled from "styled-components";
+import { createMuiTheme } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
+export const ContainerCreatePost = styled.div`
+  border: 1px solid black;
+  width: 46vw;
+  margin-top: 2rem;
+  border-radius: 5px;
+  padding: 1rem 1rem;
+`;
+
+export const TitleCreate = styled.p`
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  text-decoration: underline;
+  text-align: center;
+  margin-left: 1rem;
+`;
+
+export const TextArea = styled(TextareaAutosize)`
+  margin: 1rem 0;
+`;
+
+export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  -webkit-box-shadow: 10px 10px 5px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: -8px -13px 6px 13px rgba(0, 0, 0, 0.75);
+  height: 12vh;
+  padding-right: 2rem;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ButtonTry = styled(Button)`
+  margin-right: 2rem;
+`;
+
+export const LogoImg = styled.img`
+  max-width: 10vw;
+  margin-left: 2rem;
+  @media (max-width: 530px) {
+    max-width: 50%;
+  }
+`;
 export const Icon = styled(ChatBubbleIcon)`
   cursor: pointer;
   color: #878a8c;
@@ -52,6 +105,9 @@ export const DetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 1rem;
   height: inherit;
 `;
 
@@ -63,10 +119,40 @@ export const CommentsContainer = styled.div`
 `;
 
 export const DivUpDown = styled.div`
-  width: 15vw;
+  max-width: 15vw;
   height: auto;
   background-color: #f8f9fa;
   flex-direction: column;
   align-items: center;
   display: flex;
 `;
+
+export const TitleCard = styled.h1`
+  font-size: 4vw;
+  font-weight: bold;
+  font-family: Verdana;
+  color: black;
+  letter-spacing: 0.1em;
+  text-align: center;
+`;
+
+export const TextPara = styled.p`
+  font-size: 1vw;
+  font-family: Verdana;
+  color: black;
+  letter-spacing: 0.1em;
+  @media (max-width: 530px) {
+    font-size: 3vw;
+  }
+`;
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#000000",
+    },
+    secondary: {
+      main: "#FFFFFF",
+    },
+  },
+});
