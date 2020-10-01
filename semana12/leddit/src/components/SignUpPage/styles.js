@@ -70,7 +70,6 @@ export const Header = styled.header`
   box-shadow: -8px -13px 6px 13px rgba(0, 0, 0, 0.75);
   width: 100%;
   height: 12vh;
-  padding-right: 2rem;
 `;
 
 export const Img = styled.img`
@@ -86,7 +85,7 @@ export const LogoImg = styled.img`
   }
 `;
 export const ButtonTry = styled(Button)`
-  padding-right: 2rem;
+  margin-right: 2rem;
 `;
 
 export const SideImg = styled.img`
