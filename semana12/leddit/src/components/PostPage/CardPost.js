@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-
-import { goToComments } from "../../router/goToPages";
+import { useHistory, useParams } from "react-router-dom";
 
 import {
   PostContainer,
@@ -21,9 +19,7 @@ import {
 } from "./styles";
 
 function CardPost(props) {
-  const history = useHistory();
-  const [clickUp, setClickUp] = useState(null);
-  const [userVoteDirection, setUserVoteDirection] = useState(0);
+  const pathParams = useParams();
 
   const vote = (choice) => {
     const body = {
@@ -31,7 +27,7 @@ function CardPost(props) {
     };
 
     const request = axios.put(
-      `https://us-central1-labenu-apis.cloudfunctions.net/labEddit/posts/${props.postId}/vote`,
+      `https://us-central1-labenu-apis.cloudfunctions.net/labEddit/posts/${pathParams.id}/vote`,
       body,
       {
         headers: {
@@ -42,8 +38,7 @@ function CardPost(props) {
 
     request
       .then((response) => {
-        setClickUp(!clickUp);
-        setUserVoteDirection(choice);
+        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -53,21 +48,18 @@ function CardPost(props) {
   return (
     <PostContainer>
       <DivUpDown>
-        <ArrowUp onClick={() => vote(1)} />
-        <p>{props.votesCount + userVoteDirection}</p>
+        <ArrowUp onClick={() => vote(+1)} />
+        <p>{props.votesCountPost}</p>
         <ArrowDown onClick={() => vote(-1)} />
       </DivUpDown>
 
       <DetailContainer>
-        <TimeTitle>Posted by u/{props.username}</TimeTitle>
+        <TimeTitle>Posted by u/{props.userName}</TimeTitle>
         <TitleCard>{props.title}</TitleCard>
-        <TextPara>{props.text}</TextPara>
+        <TextPara>{props.textPost}</TextPara>
         <CommentsContainer>
-          <Icon
-            fontSize={"small"}
-            onClick={() => goToComments(history, props.postId)}
-          />
-          <CommentTitle>{props.commentsCount} comments</CommentTitle>
+          <Icon fontSize={"small"} />
+          <CommentTitle>{props.commentCount} comments</CommentTitle>
         </CommentsContainer>
       </DetailContainer>
     </PostContainer>

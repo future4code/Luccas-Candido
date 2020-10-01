@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginPage from "../components/LoginPage/LoginPage";
 import SignUpPage from "../components/SignUpPage/SignUpPage";
 import Feed from "../components/Feed/Feed";
+import PostPage from "../components/PostPage/PostPage";
 
 function Router() {
   return (
@@ -22,6 +23,10 @@ function Router() {
 
         <Route exact path="/feed">
           <Feed />
+        </Route>
+
+        <Route exact path="/feed/:id">
+          <PostPage />
         </Route>
       </Switch>
     </BrowserRouter>

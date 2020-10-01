@@ -67,8 +67,9 @@ function Feed() {
                   title={post.title}
                   text={post.text}
                   username={post.username}
-                  post={post}
                   postId={post.id}
+                  votesCount={post.votesCount}
+                  commentsCount={post.commentsCount}
                 />
               );
             })}

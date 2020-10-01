@@ -9,3 +9,7 @@ export const goToSignUpPage = (history) => {
 export const goToFeed = (history) => {
   history.push("/feed");
 };
+
+export const goToComments = (history, id) => {
+  history.push(`/feed/${id}`);
+};
