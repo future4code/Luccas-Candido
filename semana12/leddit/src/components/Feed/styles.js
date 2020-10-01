@@ -10,7 +10,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 export const ContainerCreatePost = styled.div`
   border: 1px solid black;
   width: 46vw;
-  margin-top: 2rem;
+  margin-top: 8rem;
   border-radius: 5px;
   padding: 1rem 1rem;
 `;
@@ -33,17 +33,22 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background: white;
   -webkit-box-shadow: 10px 10px 5px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px -10px rgba(0, 0, 0, 0.75);
   box-shadow: -8px -13px 6px 13px rgba(0, 0, 0, 0.75);
   height: 12vh;
   padding-right: 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  z-index: 1;
 `;
 
 export const ButtonTry = styled(Button)`
