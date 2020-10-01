@@ -3,6 +3,8 @@ import axios from "axios";
 import { useProtect } from "../../services/useProtect";
 import Logo from "../../imgs/logo.png";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { goToLoginPage } from "../../router/goToPages";
+import { useHistory } from "react-router-dom";
 
 // Styled
 
@@ -21,6 +23,7 @@ import CardPost from "./CardPost";
 import PostComponent from "./PostComponent";
 
 function Feed() {
+  const history = useHistory();
   const [posts, setPosts] = useState([]);
 
   // Pegar Post - API
@@ -48,13 +51,18 @@ function Feed() {
     getPost();
   });
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    goToLoginPage(history);
+  };
+
   useProtect();
   return (
     <Container>
       <ThemeProvider theme={theme}>
         <Header>
           <LogoImg src={Logo} />
-          <ButtonTry color="primary" variant="contained">
+          <ButtonTry color="primary" variant="contained" onClick={logout}>
             Logout
           </ButtonTry>
         </Header>
@@ -70,6 +78,7 @@ function Feed() {
                   postId={post.id}
                   votesCount={post.votesCount}
                   commentsCount={post.commentsCount}
+                  userVoteDirection={post.userVoteDirection}
                 />
               );
             })}

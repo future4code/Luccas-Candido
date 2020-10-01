@@ -69,6 +69,9 @@ function PostComponent(props) {
             required
             autoFocus
             margin={"normal"}
+            inputProps={{
+              title: "Insert post title",
+            }}
           />
           <TextArea
             aria-label="maximum height"
@@ -78,9 +81,17 @@ function PostComponent(props) {
             name={"text"}
             onChange={handleInputChange}
             type={"text"}
+            inputProps={{
+              title: "Insert text post",
+            }}
             required
           />
-          <Button color="primary" variant="contained" onClick={createPost}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={createPost}
+            type="submit"
+          >
             Create Post
           </Button>
         </Container>

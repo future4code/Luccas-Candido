@@ -22,7 +22,6 @@ import {
 
 function CardPost(props) {
   const history = useHistory();
-  const [clickUp, setClickUp] = useState(null);
   const [userVoteDirection, setUserVoteDirection] = useState(0);
 
   const vote = (choice) => {
@@ -42,8 +41,7 @@ function CardPost(props) {
 
     request
       .then((response) => {
-        setClickUp(!clickUp);
-        setUserVoteDirection(choice);
+        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -53,9 +51,17 @@ function CardPost(props) {
   return (
     <PostContainer>
       <DivUpDown>
-        <ArrowUp onClick={() => vote(1)} />
+        {props.userVoteDirection === 1 ? (
+          <ArrowUpClick />
+        ) : (
+          <ArrowUp onClick={() => vote(1)} />
+        )}
         <p>{props.votesCount + userVoteDirection}</p>
-        <ArrowDown onClick={() => vote(-1)} />
+        {props.userVoteDirection === -1 ? (
+          <ArrowDownClick />
+        ) : (
+          <ArrowDown onClick={() => vote(-1)} />
+        )}
       </DivUpDown>
 
       <DetailContainer>

@@ -27,6 +27,7 @@ function PostPage() {
   const [commentCount, setCommentCount] = useState(0);
   const [comments, setComments] = useState([]);
   const [votesCountPost, setVotesCountPost] = useState(0);
+  const [userVoteDirection, setUserVoteDirection] = useState(0);
   const pathParams = useParams();
 
   const history = useHistory();
@@ -50,6 +51,7 @@ function PostPage() {
         setCommentCount(response.data.post.commentsCount);
         setComments(response.data.post.comments);
         setVotesCountPost(response.data.post.votesCount);
+        setUserVoteDirection(response.data.post.userVoteDirection);
       })
       .catch((err) => {
         console.log(err);
@@ -76,6 +78,7 @@ function PostPage() {
             textPost={textPost}
             commentCount={commentCount}
             votesCountPost={votesCountPost}
+            userVoteDirection={userVoteDirection}
           />
           <CommentComponent />
 

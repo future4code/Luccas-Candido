@@ -7,6 +7,8 @@ import {
   CommentsUpDown,
   ArrowUp,
   ArrowDown,
+  ArrowUpClick,
+  ArrowDownClick,
   DetailContainer,
   TimeTitle,
   TextPara,
@@ -14,7 +16,6 @@ import {
 
 function Comment(props) {
   const pathParams = useParams();
-  const [clickUp, setClickUp] = useState(null);
 
   const voteComment = (choice) => {
     const body = {
@@ -33,7 +34,7 @@ function Comment(props) {
 
     request
       .then((response) => {
-        setClickUp(!clickUp);
+        console.log(response);
       })
       .catch((err) => {
         console.log(err);
@@ -42,9 +43,17 @@ function Comment(props) {
   return (
     <CommentContainer>
       <CommentsUpDown>
-        <ArrowUp onClick={() => voteComment(+1)} />
+        {props.userVoteDirection === 1 ? (
+          <ArrowUpClick />
+        ) : (
+          <ArrowUp onClick={() => voteComment(+1)} />
+        )}
         <p>{props.votesCount}</p>
-        <ArrowDown onClick={() => voteComment(-1)} />
+        {props.userVoteDirection === -1 ? (
+          <ArrowDownClick />
+        ) : (
+          <ArrowDown onClick={() => voteComment(-1)} />
+        )}
       </CommentsUpDown>
       <DetailContainer>
         <TimeTitle>Posted by u/{props.userName}</TimeTitle>

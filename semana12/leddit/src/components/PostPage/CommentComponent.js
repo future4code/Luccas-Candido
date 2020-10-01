@@ -62,7 +62,12 @@ function CommentComponent(props) {
             type={"text"}
             required
           />
-          <Button color="primary" variant="contained" onClick={createComment}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={createComment}
+            type="submit"
+          >
             Comment
           </Button>
         </Container>

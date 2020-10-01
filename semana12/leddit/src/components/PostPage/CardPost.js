@@ -48,9 +48,17 @@ function CardPost(props) {
   return (
     <PostContainer>
       <DivUpDown>
-        <ArrowUp onClick={() => vote(+1)} />
-        <p>{props.votesCountPost}</p>
-        <ArrowDown onClick={() => vote(-1)} />
+        {props.userVoteDirection === 1 ? (
+          <ArrowUpClick />
+        ) : (
+          <ArrowUp onClick={() => vote(+1)} />
+        )}
+        <p>{props.votesCountPost + props.userVoteDirection}</p>
+        {props.userVoteDirection === -1 ? (
+          <ArrowDownClick />
+        ) : (
+          <ArrowDown onClick={() => vote(-1)} />
+        )}
       </DivUpDown>
 
       <DetailContainer>

@@ -47,6 +47,7 @@ function LoginForm() {
         history.push("/feed");
       })
       .catch((err) => {
+        alert("Insira os dados corretos!");
         console.log(err);
       });
   };
