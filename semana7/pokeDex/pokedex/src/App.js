@@ -107,12 +107,10 @@ export default class App extends React.Component {
                   {p.name}
                 </option>
               );
-            })
-
-            }
+            })}
           </NativeSelect>
 
-            {/* PB ICON */}
+          {/* PB ICON */}
           <ImgPb
             src={"https://img.icons8.com/plasticine/2x/pokeball.png"}
             width={"30"}
@@ -123,40 +121,30 @@ export default class App extends React.Component {
             <img alt={"Imagem"} src={this.state.pokemonImage} />
           )}
 
-          
           <p>
             <strong>Pokemon Name:</strong>{" "}
-
             {/* Map pra retornar o nome do Pokemon */}
             {this.state.pokemonName.map((pokemon) => {
               return <span>{pokemon.name.toUpperCase()}</span>;
-            })
-            
-            }
+            })}
           </p>
-
 
           <DivPType>
             <p>
-              <strong>Pokemon Type</strong>{" "}
-
-              {/* MAP pra pegar os tipos */}
+              <strong>Pokemon Type</strong> {/* MAP pra pegar os tipos */}
               {this.state.pokemonType.map((pokemon) => {
                 return (
                   <ListaStyle key={pokemon.type.name}>
                     <ArrowForwardIcon /> {pokemon.type.name.toUpperCase()}
                   </ListaStyle>
                 );
-              })
-
-              }
+              })}
             </p>
           </DivPType>
 
           <DivPType>
             <p>
               <strong>Pokemon Stats</strong>{" "}
-
               {/* MAP Pra renderizar os stats. */}
               {this.state.pokemonStats.map((pokemon) => {
                 return (
@@ -164,9 +152,7 @@ export default class App extends React.Component {
                     {pokemon.stat.name.toUpperCase()}: {pokemon.base_stat}
                   </ListaStyle>
                 );
-              })
-              
-              }
+              })}
             </p>
           </DivPType>
         </DivContainer>

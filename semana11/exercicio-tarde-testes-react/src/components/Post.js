@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Post = props => {
+export const Post = (props) => {
   return (
     <div className={"post-container"}>
       <p>{props.post.text}</p>
@@ -10,7 +10,12 @@ export const Post = props => {
       >
         {props.post.liked ? "Descurtir" : "Curtir"}
       </button>
-      <button onClick={() => props.deletePost(props.post.id)}>Apagar</button>
+      <button
+        data-testid={"testebutton"}
+        onClick={() => props.deletePost(props.post.id)}
+      >
+        Apagar
+      </button>
     </div>
   );
 };
