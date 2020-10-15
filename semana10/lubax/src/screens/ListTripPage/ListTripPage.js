@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from 'styled-components'
 
 // Material
 import Button from "@material-ui/core/Button";
@@ -28,6 +29,10 @@ import {
   ImgIntro,
   DivButtonDetail,
 } from "./styles";
+
+const PaperTest = styled(Paper)`
+padding-bottom: 1rem;
+`
 
 function ListTripPage() {
   const history = useHistory();
@@ -123,7 +128,7 @@ function ListTripPage() {
             {trip.map((trip) => {
               return (
                 <DivInfos>
-                  <Paper elevation={3}>
+                  <PaperTest elevation={3}>
                     <ImgIntro src={ImgInfo} />
                     <h1>{trip.name}</h1>
                     <p>
@@ -145,7 +150,7 @@ function ListTripPage() {
                     >
                       Viaje conosco
                     </Button>
-                  </Paper>
+                  </PaperTest>
                 </DivInfos>
               );
             })}
