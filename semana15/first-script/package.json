@@ -1,0 +1,17 @@
+{
+  "name": "first-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "clear && echo \"Starting application...\" && tsc && node ./build/index.js",
+    "start:dev": "ts-node-dev ./src/index/ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node-dev": "^1.0.0"
+  }
+}
