@@ -51,7 +51,7 @@ app.get("/countries/search", (req: Request, res:Response) => {
     }
 })
 
-
+app.put("/countries/edit/:id")
 
 app.listen(3003, () => {
     console.log("Servidor rodando na porta 3003")

@@ -1,0 +1,24 @@
+1)*a. Qual método HTTP você deve utilizar para isso?*
+
+R: O método GET.
+
+*b. Como você indicaria a **entidade** que está sendo manipulada?*
+
+R: Indicaria como users com o método GET.
+
+2) a) Como você passou os parâmetros de type para a requisição? Por quê?
+
+R: Com um filter retornando o mesmo type do parâmetro, assim ele me retorna um array de items
+com esse parâmetro.
+
+b. Você consegue pensar em um jeito de garantir que apenas `types` válidos sejam utilizados?
+
+R: Utilizando um enum para validar o type.
+
+3)*a. Qual é o tipo de envio de parâmetro que costuma ser utilizado por aqui?*
+
+R: QueryParams, que buscamos um dado de um mesmo conjunto.
+
+4) a. Mude o método do endpoint para `PUT`. O que mudou?
+R: Sinceramente não vi muita diferença. Sei que o método PUT serve para inserção de dados
+sem muitas verificações. No meu caso, o POST seria bom porque realizo verificações sobre os dados que estou recebendo.
