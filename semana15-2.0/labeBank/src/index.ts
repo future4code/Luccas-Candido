@@ -11,6 +11,8 @@ enum BALANCE {
   BALANCE = 0
 }
 
+const myDate: Date = new Date()
+
 type trasactions = {
   value: number,
   date: Date,
@@ -132,6 +134,15 @@ app.put("/users", (req: Request, res:Response) => {
     }
 
     users[userCpf].balance += value
+
+    const extractAccount:trasactions = {
+      value: value,
+      date: myDate,
+      description: "Depósito em Dinheiro"
+    }
+
+    users[userCpf].account.extract.push(extractAccount)
+    
 
     res.status(200).send({message: `Added ${value} to user balance!`})
 
