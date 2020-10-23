@@ -15,7 +15,7 @@ const myDate: Date = new Date()
 
 type trasactions = {
   value: number,
-  date: Date,
+  date: Date | string,
   description: string
 }
 
@@ -76,6 +76,8 @@ app.get("/users/:cpf", (req:Request, res:Response) => {
 
 })
 
+
+
 // Criar usuário!
 app.post("/users", (req:Request, res:Response) => {
 
@@ -117,6 +119,47 @@ app.post("/users", (req:Request, res:Response) => {
   }
 
 })
+
+// Pagamento de Contas
+app.post("/payment", (req:Request, res:Response) => {
+
+  try {
+
+    let {date, description, value, cpf} = req.body
+
+    const userIndex = users.findIndex((u) => {
+      return u.cpf === cpf
+    })
+
+    if(userIndex === -1) {
+      throw new Error()
+    }
+
+    if(date === "") {
+      date = myDate
+    }
+
+    const extractPayment:trasactions = {
+      value: value,
+      date: date,
+      description: description
+    }
+
+    users[userIndex].cpf = cpf
+    users[userIndex].account.extract.push(extractPayment)
+
+    res.status(200).send({message: "Payment Accept!"})
+    
+
+  } catch(error) {
+
+    res.status(400).send({message: "Error Inserting Data!"})
+
+  }
+
+})
+
+
 
 // Adicionar saldo ao usuário
 app.put("/users", (req: Request, res:Response) => {
