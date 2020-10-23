@@ -20,5 +20,7 @@ R: Utilizando um enum para validar o type.
 R: QueryParams, que buscamos um dado de um mesmo conjunto.
 
 4) a. Mude o método do endpoint para `PUT`. O que mudou?
-R: Sinceramente não vi muita diferença. Sei que o método PUT serve para inserção de dados
+R: O PUT alteraçõu um usuário existente. Sei que o método PUT serve para inserção de dados
 sem muitas verificações. No meu caso, o POST seria bom porque realizo verificações sobre os dados que estou recebendo.
+
+

@@ -15,7 +15,7 @@ const myDate: Date = new Date()
 
 type trasactions = {
   value: number,
-  date: Date | string,
+  date: Date,
   description: string
 }
 
@@ -137,6 +137,10 @@ app.post("/payment", (req:Request, res:Response) => {
 
     if(date === "") {
       date = myDate
+      
+    } else {
+      const arrayDate = date.split("/")
+      date = new Date(arrayDate[2], arrayDate[1] - 1, arrayDate[0])
     }
 
     const extractPayment:trasactions = {
@@ -144,6 +148,8 @@ app.post("/payment", (req:Request, res:Response) => {
       date: date,
       description: description
     }
+
+    
 
     users[userIndex].cpf = cpf
     users[userIndex].account.extract.push(extractPayment)
@@ -193,6 +199,34 @@ app.put("/users", (req: Request, res:Response) => {
     res.status(404).send({message: "Error inserting data!"})
   }
 
+})
+
+// Atualiza saldo
+
+app.put("/users/update", (req:Request, res:Response) => {
+
+
+  try {
+
+    const extractUser = users.filter((u) => {
+
+      u.account.extract.filter((extract) => {
+
+        if(extract.description !== "Depósito em Dinheiro") {
+
+          if(extract.date.getDate() < myDate.getDate()) {
+            return u.balance -= extract.value
+          }
+        }
+      })
+    })
+
+    res.status(200).send(extractUser)
+
+
+  } catch(error) {
+    res.status(400).send({message:"Error Inserting Data!"})
+  }
 })
 
 
