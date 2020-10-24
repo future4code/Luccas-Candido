@@ -143,6 +143,65 @@ app.post("/payment", (req: Request, res: Response) => {
   }
 });
 
+// Transferências entre contas (Endpoint 9)
+
+app.post("/transfer", (req:Request, res:Response) => {
+
+  try {
+
+    const {name, cpf, receiver, receiverCpf, value} = req.body
+
+
+    const userIndex = users.findIndex((u) => {
+      return u.cpf === cpf
+    })
+
+    const receiverIndex = users.findIndex((u) => {
+      return u.cpf === receiverCpf
+    })
+
+    
+        // Dados Pagante
+        users[userIndex].name = name
+        users[userIndex].cpf = cpf
+    
+        // Dados receptor
+        users[receiverIndex].name = receiver
+        users[receiverIndex].cpf = receiverCpf
+
+
+    const userExtract:trasactions = {
+      value: value,
+      date: myDate,
+      description: `Depósito feito para ${receiver}`
+    }
+
+    const receiverExtract:trasactions = {
+      value: value,
+      date: myDate,
+      description: `Deposito feito para você por ${name}`
+    }
+
+    // Endpoint 10
+    if(users[userIndex].balance < value) {
+      res.status(404).send({message: "No balance to transfer!"})
+
+    } else {
+      users[userIndex].account.extract.push(userExtract)
+      users[receiverIndex].account.extract.push(receiverExtract)
+
+      res.status(200).send({message: "Transaction Accepted"})
+    }
+
+    
+
+
+  } catch(error) {
+
+    res.status(400).send({message: "Error Inserting Data!"})
+  }
+})
+
 // Adicionar saldo ao usuário
 app.put("/users", (req: Request, res: Response) => {
   try {
