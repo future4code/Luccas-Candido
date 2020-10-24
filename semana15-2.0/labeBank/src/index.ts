@@ -123,11 +123,11 @@ app.post("/payment", (req: Request, res: Response) => {
       description: description,
     };
 
-    // Pagamento só realizado se a data for atual! (Endpoint 7)
+    // Pagamento só realizado se a data for atual! (desafio 7)
     if (date.getDate() < myDate.getDate()) {
       res.status(404).send({ message: "Invalid Date!" });
 
-      // Verificando se o usuário tem saldo (Endpoint 8)
+      // Verificando se o usuário tem saldo (desafio 8)
     } else if(value > users[userIndex].balance) {
       res.status(404).send({message : "No balance!"})
 
@@ -143,7 +143,7 @@ app.post("/payment", (req: Request, res: Response) => {
   }
 });
 
-// Transferências entre contas (Endpoint 9)
+// Transferências entre contas (Desafio 9)
 
 app.post("/transfer", (req:Request, res:Response) => {
 
@@ -159,6 +159,9 @@ app.post("/transfer", (req:Request, res:Response) => {
     const receiverIndex = users.findIndex((u) => {
       return u.cpf === receiverCpf
     })
+
+
+    
 
     
         // Dados Pagante
@@ -182,16 +185,44 @@ app.post("/transfer", (req:Request, res:Response) => {
       description: `Deposito feito para você por ${name}`
     }
 
-    // Endpoint 10
-    if(users[userIndex].balance < value) {
-      res.status(404).send({message: "No balance to transfer!"})
 
+    // Tentei desafio 11 mas sem sucesso. Quando insere
+    // um nome diferente, ele altera :/
+    const findUser = users.find((u) => {
+      if(u.name === name && u.cpf === cpf) {
+        return true
+      }
+      return false
+    })
+
+    const receiverUser = users.find((u) => {
+      if(u.name === receiver && u.cpf === receiverCpf) {
+        return true
+      }
+      return false
+    })
+
+    if(findUser && receiverUser) {
+      
+      // Desafio 10
+      if(users[userIndex].balance < value) {
+        res.status(404).send({message: "No balance to transfer!"})
+
+      } else {
+        users[userIndex].account.extract.push(userExtract)
+        users[receiverIndex].account.extract.push(receiverExtract)
+
+        res.status(200).send({message: "Transaction Accepted"})
+      }
     } else {
-      users[userIndex].account.extract.push(userExtract)
-      users[receiverIndex].account.extract.push(receiverExtract)
-
-      res.status(200).send({message: "Transaction Accepted"})
+      res.status(400).send({message: "User does not exist"})
     }
+
+
+      
+
+
+    
 
     
 
@@ -236,7 +267,7 @@ app.put("/users", (req: Request, res: Response) => {
 app.put("/users/update", (req: Request, res: Response) => {
   try {
 
-    // Atualização do saldo apenas para datas anteriores (endpoint 6)
+    // Atualização do saldo apenas para datas anteriores (desafio 6)
     const extractUser = users.filter((u) => {
       u.account.extract.filter((extract) => {
         if (extract.description !== "Depósito em Dinheiro") {
