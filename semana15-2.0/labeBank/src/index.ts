@@ -127,13 +127,17 @@ app.post("/payment", (req: Request, res: Response) => {
     if (date.getDate() < myDate.getDate()) {
       res.status(404).send({ message: "Invalid Date!" });
 
-    } else {
+      // Verificando se o usuário tem saldo (Endpoint 8)
+    } else if(value > users[userIndex].balance) {
+      res.status(404).send({message : "No balance!"})
 
+    } else {
       users[userIndex].cpf = cpf;
       users[userIndex].account.extract.push(extractPayment);
 
       res.status(200).send({ message: "Payment Accept!" });
     }
+
   } catch (error) {
     res.status(400).send({ message: "Error Inserting Data!" });
   }
@@ -172,7 +176,7 @@ app.put("/users", (req: Request, res: Response) => {
 
 app.put("/users/update", (req: Request, res: Response) => {
   try {
-    
+
     // Atualização do saldo apenas para datas anteriores (endpoint 6)
     const extractUser = users.filter((u) => {
       u.account.extract.filter((extract) => {
