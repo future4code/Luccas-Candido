@@ -68,6 +68,8 @@ c) ``` SELECT * FROM Movies WHERE release_date < "2020-10-25" ```
 d) ```
 SELECT * FROM Movies WHERE release_date < "2020-10-25" AND (title LIKE "%compadecida%" OR synopsis LIKE "%compadecida%") AND rating > 7 ```
 
+XD
+
 
 
 
