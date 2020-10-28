@@ -6,6 +6,11 @@ import { AddressInfo } from "net";
 import { getActorGender } from "./endpoint/getActorGender";
 import { getActorId } from "./endpoint/getActorId";
 import { putActor } from "./endpoint/putActor";
+import { salaryUpdate } from "./endpoint/salaryUpdate";
+import { actorDelete } from "./endpoint/actorDelete";
+import { createMovie } from "./endpoint/createMovie";
+import { getMovie } from "./endpoint/getMovie";
+import { getMovieBySearch } from "./endpoint/getMovieBySearch";
 
 
 dotenv.config()
@@ -37,7 +42,17 @@ app.get("/actor/:id", getActorId)
 
 app.get("/actor", getActorGender)
 
-app.put("/acator", putActor)
+app.get("/movie/all", getMovie)
+
+app.get("/movie/search", getMovieBySearch)
+
+app.put("/actor", putActor)
+
+app.post("/movie", createMovie)
+
+app.post("/actor", salaryUpdate)
+
+app.delete("/actor/:id", actorDelete)
 
 
 
