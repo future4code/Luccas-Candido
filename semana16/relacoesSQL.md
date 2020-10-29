@@ -48,3 +48,50 @@ b)
 SELECT m.id as movie_id, r.rate as rating FROM Movies m
 INNER JOIN Rating r ON m.id = r.movie_id;
 ```
+
+
+### Exercício 4
+a)
+```
+SELECT m.id as movie_id, m.title, r.rate as rating, r.comment as rating_comment FROM Movie m
+LEFT JOIN Rating r ON m.id = r.movie_id;
+```
+
+b)
+
+```
+SELECT m.id as movie_id, m.title, mc.actor_id FROM Movie m
+RIGHT JOIN MovieCast mc ON mc.movie_id = m.id;
+```
+
+c)
+```
+SELECT AVG(r.rate) as rating_average, m.title, m.id as movie_id FROM Movies m
+LEFT JOIN Rating r on m.id = r.movie_id
+GROUP BY(m.id);
+```
+
+### Exercício 5
+a) Há a necessidade de dois joins porque há a necessidade de manipular tabelas independentes, sendo assim, há uma junção de uma tabela independente com a tabela MovieCast e logo então é feito a junção dessa tabela com a do Actor.
+
+b)
+```
+SELECT m.id as movie_id, m.title, a.id as actor_id, a.name FROM Movies m
+LEFT JOIN MovieCast mc ON m.id = mc.movie_id
+JOIN Actor a ON a.id = mc.actor_id;
+```
+
+c) O resultado trás o ID dos filmes, junto com o nome e os atores que participam no filme. Temos as colunas que representam a tabela do filme(movie_id e title) e as colunas que representam a tabela Actor(actor_id e name).
+
+d)
+```
+SELECT m.id as movie_id, 
+m.title, 
+a.id as actor_id,
+a.name,
+r.rate,
+r.comment FROM Movies m
+LEFT JOIN Rating r ON r.movie_id = m.id
+LEFT JOIN MovieCast mc ON m.id = mc.movie_id
+JOIN Actor a ON a.id = mc.actor_id;
+```
