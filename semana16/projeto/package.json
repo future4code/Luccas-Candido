@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "clear && echo \"Starting application...\" && tsc && node ./build/index.js",
     "create-table": "ts-node-dev .src/data/",
     "dev": "ts-node-dev ./src/index.ts"
-
   },
   "keywords": [],
   "author": "",
@@ -20,11 +18,12 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "ts-node-dev": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.21.9",
-    "mysql": "^2.18.1"
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "ts-node-dev": "^1.0.0"
   }
 }

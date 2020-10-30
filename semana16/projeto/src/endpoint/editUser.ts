@@ -8,23 +8,31 @@ export const editUser = async(req:Request, res:Response):Promise<any> => {
 
         const userExist = await getUserF(Number(req.params.id))
 
+        if(userExist.length === 0) {
+            res.status(404).send({message: "User does not exist!"})
+            return
+        }
+
+        if(req.body.name === "" || req.body.nickname === "") {
+            res.status(404).send({message: "Insert the right params!"})
+            return
+
+        }
+
+        if(!req.body.name || !req.body.nickname) {
+            res.status(404).send({message: "Preencha um dos campos"})
+            return
+
+        }
+    
         
-        const result = await editUserF(
+        await editUserF(
             Number(req.params.id), 
             req.body.name, 
             req.body.nickname)
             
-        
-        if(userExist.length === 0) {
-            res.status(404).send({message: "User does not exist!"})
-        }
-
-
-        if(req.body.name === "" || req.body.nickname === "") {
-            res.status(404).send({message: "Insert the right params!"})
-        } else {
-            res.status(200).send(result)
-        }
+        res.status(200).send({message: "Usuário atualizado."})
+      
    
         
     } catch (error) {
