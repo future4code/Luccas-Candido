@@ -8,6 +8,7 @@ import {getUser} from "./endpoint/getUser"
 import {editUser} from "./endpoint/editUser"
 import {createTask} from "./endpoint/createTask"
 import { getTaskById } from "./endpoint/getTaskById";
+import { getAllUsers } from "./endpoint/getAllUsers"
 dotenv.config()
 
 // ENV
@@ -28,6 +29,8 @@ const app: Express = express();
 app.use(express.json())
 app.use(cors())
 
+
+app.get("/user/all", getAllUsers)
 
 app.get("/user/:id", getUser)
 
