@@ -11,6 +11,7 @@ import { getTaskById } from "./endpoint/getTaskById";
 import { getAllUsers } from "./endpoint/getAllUsers"
 import { getTaskByUserId } from "./endpoint/getTaskByUserId";
 import { getUserBySearch } from "./endpoint/getUserBySearch";
+import { createTaskResponsible } from "./endpoint/createTaskResponsible";
 dotenv.config()
 
 // ENV
@@ -45,6 +46,8 @@ app.get("/task/:id", getTaskById)
 app.put("/user", createUser)
 
 app.put("/task", createTask)
+
+app.post("/task/responsible", createTaskResponsible)
 
 app.post("/user/edit/:id", editUser)
 
