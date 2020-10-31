@@ -8,6 +8,12 @@ export const getUserBySearch = async(req:Request, res:Response) => {
     try {
 
         const search = await searchUser(req.query.query as string)
+
+        if(search.length === 0) {
+            res.status(404).send({message: "Not found :/"})
+            return
+        }
+
         res.status(200).send({users: search})
 
         
