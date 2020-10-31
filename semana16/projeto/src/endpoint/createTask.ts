@@ -17,6 +17,7 @@ export const createTask = async(req:Request, res:Response):Promise<void> => {
 
         if(dateDiff <= 0) {
             res.status(400).send({message: "Data limite deve ser uma data futura"})
+            return
         }
 
         await createTaskF(

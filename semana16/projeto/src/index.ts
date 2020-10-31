@@ -9,6 +9,7 @@ import {editUser} from "./endpoint/editUser"
 import {createTask} from "./endpoint/createTask"
 import { getTaskById } from "./endpoint/getTaskById";
 import { getAllUsers } from "./endpoint/getAllUsers"
+import { getTaskByUserId } from "./endpoint/getTaskByUserId";
 dotenv.config()
 
 // ENV
@@ -31,6 +32,8 @@ app.use(cors())
 
 
 app.get("/user/all", getAllUsers)
+
+app.get("/task", getTaskByUserId)
 
 app.get("/user/:id", getUser)
 
