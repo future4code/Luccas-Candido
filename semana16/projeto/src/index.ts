@@ -12,6 +12,7 @@ import { getAllUsers } from "./endpoint/getAllUsers"
 import { getTaskByUserId } from "./endpoint/getTaskByUserId";
 import { getUserBySearch } from "./endpoint/getUserBySearch";
 import { createTaskResponsible } from "./endpoint/createTaskResponsible";
+import { getUserResponsible } from "./endpoint/getUserResponsible";
 dotenv.config()
 
 // ENV
@@ -42,6 +43,8 @@ app.get("/user", getUserBySearch)
 app.get("/task", getTaskByUserId)
 
 app.get("/task/:id", getTaskById)
+
+app.get("/task/:id/responsible", getUserResponsible)
 
 app.put("/user", createUser)
 
