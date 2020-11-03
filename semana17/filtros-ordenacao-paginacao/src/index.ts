@@ -25,11 +25,9 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors())
 
-app.get("/users", getAllUsers)
 
-app.get("/users/search", getUserSearch)
+app.get("/users", getUserSearch)
 
-app.get("/users/:type", getUserByType)
 
 
 const server = app.listen(process.env.PORT || 3003, () => {

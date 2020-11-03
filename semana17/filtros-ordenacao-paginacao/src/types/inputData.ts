@@ -1,5 +1,6 @@
 export type inputData = {
     name:string,
-    type:string,
+    orderType:string,
+    orderBy:string,
     page:number
 }

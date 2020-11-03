@@ -1,4 +1,5 @@
 import {Response, Request} from "express"
+import { selectAllUsers } from "../data/selectAllUsers"
 import { selectSearch } from "../data/selectSearch"
 import { inputData } from "../types/inputData"
 
@@ -8,14 +9,33 @@ export const getUserSearch = async(req:Request, res:Response):Promise<void> => {
 
         const data:inputData = {
             name: req.query.name as string,
-            type: req.query.type as string,
+            orderType: req.query.orderType as string || 'ASC',
+            orderBy: req.query.orderBy as string || 'type',
             page: Number(req.query.page) <= 0 ? 1 : Number(req.query.page) || 1
         }
 
+        const users = await selectAllUsers()
+
+        if(data.name === undefined) {
+            res.status(200).send(users)
+            return
+        }
 
         if(!data.name) {
             res.statusCode = 404;
             throw new Error("Você deve inserir um valor pra 'name'")
+        }
+
+        const validOrderByType = ['ASC', 'DESC']
+
+        if(!validOrderByType.includes(data.orderType)) {
+            throw new Error("Os valores de orderType devem ser ASC ou DESC")
+        }
+
+        const validOrderBy = ['type', 'name']
+
+        if(!validOrderBy.includes(data.orderBy)) {
+            throw new Error("Os valores de orderBy devem ser 'type' ou 'name'")
         }
 
 
