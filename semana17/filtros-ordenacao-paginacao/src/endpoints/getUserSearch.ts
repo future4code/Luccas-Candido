@@ -14,39 +14,49 @@ export const getUserSearch = async(req:Request, res:Response):Promise<void> => {
             page: Number(req.query.page) <= 0 ? 1 : Number(req.query.page) || 1
         }
 
-        const users = await selectAllUsers()
 
-        if(data.name === undefined) {
+        if(data.name) {
+
+            const validOrderByType = ['ASC', 'DESC']
+
+            if(!validOrderByType.includes(data.orderType)) {
+                throw new Error("Os valores de orderType devem ser ASC ou DESC")
+            }
+
+            const validOrderBy = ['type', 'name']
+
+            if(!validOrderBy.includes(data.orderBy)) {
+                throw new Error("Os valores de orderBy devem ser 'type' ou 'name'")
+            }
+
+
+            const filter = await selectSearch(data)
+
+            if(!filter.length) {
+
+                res.statusCode = 404;
+                throw new Error("Usuário não encontrado")
+            }
+
+            res.status(200).send(filter)
+
+        } else if(data.name === undefined) {
+
+            const users = await selectAllUsers()
             res.status(200).send(users)
             return
-        }
+            
+        } else if(!data.name) {
 
-        if(!data.name) {
             res.statusCode = 404;
             throw new Error("Você deve inserir um valor pra 'name'")
         }
 
-        const validOrderByType = ['ASC', 'DESC']
+        // if(!data.name) {
+        //     
+        // }
 
-        if(!validOrderByType.includes(data.orderType)) {
-            throw new Error("Os valores de orderType devem ser ASC ou DESC")
-        }
-
-        const validOrderBy = ['type', 'name']
-
-        if(!validOrderBy.includes(data.orderBy)) {
-            throw new Error("Os valores de orderBy devem ser 'type' ou 'name'")
-        }
-
-
-        const filter = await selectSearch(data)
-
-        if(!filter.length) {
-            res.statusCode = 404;
-            throw new Error("Usuário não encontrado")
-        }
-
-        res.status(200).send(filter)
+        
         
     } catch (error) {
         console.log(error)
