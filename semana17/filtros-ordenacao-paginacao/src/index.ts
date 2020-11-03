@@ -3,8 +3,9 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
-import { getAllUsers } from "./endpoints/getAllUsers copy";
+import { getAllUsers } from "./endpoints/getAllUsers";
 import { getUserSearch } from "./endpoints/getUserSearch";
+import { getUserByType } from "./endpoints/getUserByType";
 
 
 dotenv.config();
@@ -28,6 +29,7 @@ app.get("/users", getAllUsers)
 
 app.get("/users/search", getUserSearch)
 
+app.get("/users/:type", getUserByType)
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
