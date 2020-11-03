@@ -1,21 +1,25 @@
 import {Response, Request} from "express"
-import { selectTypeOrName } from "../data/selectTypeOrName"
-import { selectUserSearch } from "../data/selectUserSearch"
+import { selectSearch } from "../data/selectSearch"
+import { inputData } from "../types/inputData"
 
 export const getUserSearch = async(req:Request, res:Response):Promise<void> => {
 
     try {
 
-        const name = req.query.name as string
-        const type = req.query.type as string
+        const data:inputData = {
+            name: req.query.name as string,
+            type: req.query.type as string,
+            page: Number(req.query.page) <= 0 ? 1 : Number(req.query.page) || 1
+        }
 
-        if(!name) {
+
+        if(!data.name) {
             res.statusCode = 404;
             throw new Error("Você deve inserir um valor pra 'name'")
         }
 
 
-        const filter = await selectTypeOrName(name, type)
+        const filter = await selectSearch(data)
 
         if(!filter.length) {
             res.statusCode = 404;
