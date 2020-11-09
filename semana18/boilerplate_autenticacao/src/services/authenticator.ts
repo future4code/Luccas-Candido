@@ -19,3 +19,14 @@ export const generateToken = (input:AuthenticatorData):string => {
     return token
 }
 
+export const getData = (token:string):AuthenticatorData => {
+
+    const payload = jwt.verify(token, process.env.JWT_KEY as string) as any
+    const result = {
+        id: payload.id
+    }
+
+    return result
+
+}
+
