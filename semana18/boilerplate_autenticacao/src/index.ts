@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { createUser } from "./endpoint/createUser";
+import { login } from "./endpoint/login";
 
 
 dotenv.config();
@@ -24,6 +25,8 @@ app.use(express.json());
 
 
 app.post("/user", createUser)
+
+app.post("/login", login)
 
 
 
