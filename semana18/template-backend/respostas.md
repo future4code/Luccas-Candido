@@ -1,7 +1,0 @@
-### Exercício 1
-
-a. O round seria o cost, que é o que se relaciona com a segurança da senha. Quanto maior o cost
-maior o tempo de execução do algoritmo, o que dificulda qualquer invasão.
-O salt é o "tempero" das senhas hashs. É ele que gera a aleatoriedade nos hashs, com caracteres aleatórios, tornando cada criptografia ÚNICA.
-
-b.
