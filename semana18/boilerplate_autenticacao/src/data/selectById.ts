@@ -1,5 +1,6 @@
 import {connection} from ".."
-import { User } from "./selectByEmail"
+import { User } from "../types/user"
+
 
 
 export const selectById = async(id:string):Promise<User> => {

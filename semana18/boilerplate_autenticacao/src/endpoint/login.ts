@@ -1,6 +1,8 @@
 import {Request, Response} from "express"
-import {selectByEmail, User} from "../data/selectByEmail"
+import {selectByEmail } from "../data/selectByEmail"
 import { generateToken } from "../services/authenticator"
+import { compare } from "../services/hashManager"
+import { User } from "../types/user"
 
 export const login = async(req:Request, res:Response):Promise<void> => {
 
@@ -24,7 +26,9 @@ export const login = async(req:Request, res:Response):Promise<void> => {
             throw new Error(message)
         }
 
-        if(user.password !== password) {
+        const isPasswordCorret = await compare(password, user.password)
+
+        if(!isPasswordCorret) {
             res.statusCode = 404;
             message = "Usuário não encontrado ou senha incorreta."
             throw new Error(message)
@@ -33,7 +37,8 @@ export const login = async(req:Request, res:Response):Promise<void> => {
 
 
         const token:string = generateToken({
-            id: user.id
+            id: user.id,
+            role: user.role
         })
 
 

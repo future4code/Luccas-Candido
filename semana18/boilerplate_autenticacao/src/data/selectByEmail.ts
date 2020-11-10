@@ -1,11 +1,6 @@
 import {connection} from ".."
+import { User } from "../types/user"
 
-export type User = {
-    id: string,
-    name:string,
-    email:string,
-    password:string
-}
 
 export const selectByEmail = async(email:string):Promise<User> => {
 
@@ -16,10 +11,14 @@ export const selectByEmail = async(email:string):Promise<User> => {
     WHERE user.email = "${email}";
     `)
 
-
-    return result[0][0]
-
+    return {
+        id: result[0][0].id,
+        name: result[0][0].name,
+        email: result[0][0].email,
+        password: result[0][0].password,
+        role: result[0][0].role
     }
+}
 
     catch(error) {
         throw new Error(error.sqlMessage || error.message)

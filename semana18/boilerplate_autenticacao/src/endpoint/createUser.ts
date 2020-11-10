@@ -1,3 +1,4 @@
+import { hash } from "../services/hashManager"
 import {Request, Response} from "express"
 import {insertUser} from "../data/insertUser"
 import { generateToken } from "../services/authenticator"
@@ -8,7 +9,7 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
 
     try {
 
-        const {email, password, name } = req.body
+        const {email, password, name, role } = req.body
 
         let message = "Usuário criado com sucesso."
 
@@ -35,11 +36,12 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
 
         const id = generateId()
 
-        await insertUser(id, name, email, password)
+        const cypherPassword = await hash(password)
+
+        await insertUser(id, name, email, cypherPassword, role)
 
 
-
-        const token:string = generateToken({id})
+        const token:string = generateToken({id, role})
 
         res.status(200).send({
             token,

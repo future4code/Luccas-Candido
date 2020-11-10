@@ -1,6 +1,6 @@
 import {Request, Response} from "express"
 import { selectById } from "../data/selectById"
-import { getData } from "../services/authenticator"
+import { AuthenticatorData, getData } from "../services/authenticator"
 
 
 
@@ -10,14 +10,20 @@ export const getProfile = async(req:Request, res:Response):Promise<void> => {
 
         const token = req.headers.authorization as string
 
-        const authentication = getData(token)
+        const authentication:AuthenticatorData = getData(token)
+
+        if(authentication.role !== 'ADMIN') {
+            res.statusCode = 401;
+            throw new Error("Não autorizado")
+        }
 
         const user = await selectById(authentication.id)
 
 
         res.status(200).send({
             id: user.id,
-            email: user.email
+            email: user.email,
+            role:authentication.role
         })
 
 
