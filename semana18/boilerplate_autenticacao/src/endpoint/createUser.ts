@@ -3,13 +3,15 @@ import {Request, Response} from "express"
 import {insertUser} from "../data/insertUser"
 import { generateToken } from "../services/authenticator"
 import { generateId } from "../services/idGenerator"
+import { insertAddress } from "../data/insertAddress"
+import { getAddress } from "../services/getAddress"
 
 export const createUser = async(req:Request, res:Response):Promise<void> => {
 
 
     try {
 
-        const {email, password, name, role } = req.body
+        const {email, password, name, role, cep, numero, complemento } = req.body
 
         let message = "Usuário criado com sucesso."
 
@@ -22,13 +24,13 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
 
         if(!password || password.length < 6) {
             res.statusCode = 406
-            message = "Senha inválida"
+            message = "Preencha o campo senha"
             throw new Error(message)
         }
 
-        if(!name) {
+        if(!name || !cep || !numero) {
             res.statusCode = 406;
-            message = "Insira um valor válido para o campo name"
+            message = "Insira um valor válido para o campo 'name', 'cep' ou 'numero'"
             throw new Error(message)
             
         }
@@ -40,6 +42,14 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
 
         await insertUser(id, name, email, cypherPassword, role)
 
+        const endereco = await getAddress(cep)
+
+        await insertAddress(endereco.logradouro, numero, 
+            complemento, 
+            endereco.bairro, 
+            endereco.cidade,
+            endereco.estado)
+
 
         const token:string = generateToken({id, role})
 
@@ -48,9 +58,10 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
         })
         
     } catch (error) {
-        res.status(400).send({
-            message: error.message
-        })
+
+        let {message} = error
+
+        res.send(message)
         
     }
 
