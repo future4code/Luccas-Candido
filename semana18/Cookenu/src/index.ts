@@ -6,6 +6,7 @@ import { AddressInfo } from "net";
 import { signUp } from './endpoints/signUp';
 import { login } from './endpoints/login';
 import { getOwnProfile } from './endpoints/getOwnProfile';
+import { getProfileById } from './endpoints/getProfileById';
 
 
 dotenv.config()
@@ -30,6 +31,8 @@ app.post("/signup", signUp)
 app.post("/login", login)
 
 app.get("/user/profile", getOwnProfile)
+
+app.get("/user/:id", getProfileById)
 
 
 
