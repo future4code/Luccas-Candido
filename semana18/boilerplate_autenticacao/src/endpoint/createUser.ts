@@ -5,6 +5,7 @@ import { generateToken } from "../services/authenticator"
 import { generateId } from "../services/idGenerator"
 import { insertAddress } from "../data/insertAddress"
 import { getAddress } from "../services/getAddress"
+import { address } from "../types/address"
 
 export const createUser = async(req:Request, res:Response):Promise<void> => {
 
@@ -35,6 +36,12 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
             
         }
 
+        const endereco:address = await getAddress(cep)
+
+        if(!endereco.bairro || !endereco.cidade|| !endereco.estado || !endereco.logradouro) {
+            res.statusCode = 404
+            throw new Error ("CEP inválido")
+        }
 
         const id = generateId()
 
@@ -42,7 +49,6 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
 
         await insertUser(id, name, email, cypherPassword, role)
 
-        const endereco = await getAddress(cep)
 
         await insertAddress(endereco.logradouro, numero, 
             complemento, 
@@ -60,6 +66,11 @@ export const createUser = async(req:Request, res:Response):Promise<void> => {
     } catch (error) {
 
         let {message} = error
+
+        if(message === "Request failed with status code 400") {
+            res.statusCode = 400;
+            message = "CEP Inválido ou os campos de endereço estão preenchidos incorretamente"
+        }
 
         res.send(message)
         
