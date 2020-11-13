@@ -9,6 +9,7 @@ import { getOwnProfile } from './endpoints/getOwnProfile';
 import { getProfileById } from './endpoints/getProfileById';
 import { createRecipe } from './endpoints/createRecipes';
 import { getRecipesById } from './endpoints/getRecipesById';
+import { followUser } from './endpoints/followUser';
 
 
 dotenv.config()
@@ -33,6 +34,8 @@ app.post("/signup", signUp)
 app.post("/login", login)
 
 app.post("/recipe", createRecipe)
+
+app.post("/user/follow", followUser)
 
 app.get("/user/profile", getOwnProfile)
 
