@@ -7,6 +7,8 @@ import { signUp } from './endpoints/signUp';
 import { login } from './endpoints/login';
 import { getOwnProfile } from './endpoints/getOwnProfile';
 import { getProfileById } from './endpoints/getProfileById';
+import { createRecipe } from './endpoints/createRecipes';
+import { getRecipesById } from './endpoints/getRecipesById';
 
 
 dotenv.config()
@@ -30,9 +32,14 @@ app.post("/signup", signUp)
 
 app.post("/login", login)
 
+app.post("/recipe", createRecipe)
+
 app.get("/user/profile", getOwnProfile)
 
 app.get("/user/:id", getProfileById)
+
+app.get("/recipe/:id", getRecipesById)
+
 
 
 

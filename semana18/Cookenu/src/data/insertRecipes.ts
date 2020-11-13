@@ -8,7 +8,6 @@ export const insertRecipes = async(recipes:recipe):Promise<any> => {
         id:recipes.id,
         description:recipes.description, 
         title:recipes.title,
-        createdAt:recipes.date,
         user_id:recipes.user_id
     })
     .into("cookenu_recipes")
