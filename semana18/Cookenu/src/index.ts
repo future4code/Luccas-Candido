@@ -12,6 +12,7 @@ import { getRecipesById } from './endpoints/getRecipesById';
 import { followUser } from './endpoints/followUser';
 import { unfollow } from './endpoints/unfollow';
 import { getAllRecipes } from './endpoints/getAllRecipes';
+import { editRecipe } from './endpoints/editRecipe';
 
 
 dotenv.config()
@@ -40,6 +41,8 @@ app.post("/recipe", createRecipe)
 app.post("/user/follow", followUser)
 
 app.post("/user/unfollow", unfollow)
+
+app.post("/edit/recipe", editRecipe)
 
 app.get("/user/profile", getOwnProfile)
 

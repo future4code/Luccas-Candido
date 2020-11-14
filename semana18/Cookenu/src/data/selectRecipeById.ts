@@ -12,11 +12,13 @@ export const selectRecipeById = async(id:string):Promise<any> => {
         WHERE recipe.id = "${id}"
         `)
 
+
         return {
             id:result[0][0].id,
             title: result[0][0].title,
             description: result[0][0].description,
-            createdAt: result[0][0].createdAt
+            createdAt: result[0][0].createdAt,
+            userId: result[0][0].user_id
         }
 
     }
