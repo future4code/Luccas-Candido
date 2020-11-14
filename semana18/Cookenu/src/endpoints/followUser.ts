@@ -1,6 +1,5 @@
 import {Request, Response} from "express"
 import {updateFollower} from "../data/updateFollower"
-import { updateFollowing } from "../data/updateFollowing"
 import { getData } from "../services/authenticator"
 import { AuthenticatorData } from "../types/authenticatorData"
 
@@ -40,14 +39,16 @@ export const followUser = async(req:Request, res:Response):Promise<void> => {
         if(message === "jwt must be provided") {
             res.statusCode = 401
             message = "Não autorizado"
+
         } else if(message === "jwt expired") {
             res.statusCode = 400
             message = "Sessão expirada"
-        } else if (message.includes("Duplicate")) {
+            
+        } else if (message.includes('Duplicate')) {
             res.statusCode = 400
-            message = "Erro!"
+            message = "Já segue esse usuário"
         }
-
+ 
         res.send(message)
         
     }
