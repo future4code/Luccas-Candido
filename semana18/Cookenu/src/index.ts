@@ -13,6 +13,7 @@ import { followUser } from './endpoints/followUser';
 import { unfollow } from './endpoints/unfollow';
 import { getAllRecipes } from './endpoints/getAllRecipes';
 import { editRecipe } from './endpoints/editRecipe';
+import { deleteRecipe } from './endpoints/deleteRecipe';
 
 
 dotenv.config()
@@ -51,6 +52,8 @@ app.get("/user/:id", getProfileById)
 app.get("/recipe/:id", getRecipesById)
 
 app.get("/feed", getAllRecipes)
+
+app.delete("/delete/recipe/:id", deleteRecipe)
 
 
 
