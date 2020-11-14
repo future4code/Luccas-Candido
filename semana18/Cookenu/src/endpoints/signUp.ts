@@ -13,7 +13,7 @@ export const signUp = async(req:Request, res:Response):Promise<void> => {
 
     try {
 
-        const {name, email, password} = req.body
+        const {name, email, password, role} = req.body
 
         let message = "Usuário criado com sucesso"
 
@@ -34,9 +34,9 @@ export const signUp = async(req:Request, res:Response):Promise<void> => {
 
         const cypherPassword = await hash(password)
 
-        await insertUser({id, name, email, password: cypherPassword})
+        await insertUser({id, name, email, password: cypherPassword, role})
 
-        const token:string = generateToken({id})
+        const token:string = generateToken({id, role})
 
         res.status(200).send({
             token,

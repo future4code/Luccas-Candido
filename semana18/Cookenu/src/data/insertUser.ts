@@ -8,7 +8,8 @@ export const insertUser = async(user:User):Promise<any> => {
         id:user.id,
         name:user.name, 
         email:user.email,
-        password:user.password
+        password:user.password,
+        role: user.role
     })
     .into("cookenu_user")
 

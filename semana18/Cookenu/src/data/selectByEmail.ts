@@ -15,7 +15,8 @@ export const selectByEmail = async(email:string):Promise<User> => {
             id: result[0][0].id,
             name: result[0][0].name,
             email: result[0][0].email,
-            password: result[0][0].password
+            password: result[0][0].password,
+            role: result[0][0].role
 
         }
 

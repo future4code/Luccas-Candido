@@ -36,7 +36,8 @@ export const login = async(req:Request, res:Response):Promise<void> => {
         }
 
         const token:string = await generateToken({
-            id: user.id
+            id: user.id,
+            role: user.role
         })
 
         res.status(200).send({message,
