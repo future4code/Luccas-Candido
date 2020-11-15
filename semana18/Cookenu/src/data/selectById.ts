@@ -9,6 +9,8 @@ export const selectById = async(id:string):Promise<any> => {
     WHERE user.id = "${id}"
     `)
 
+    console.log(result[0])
+
     return result[0][0]
 
 }

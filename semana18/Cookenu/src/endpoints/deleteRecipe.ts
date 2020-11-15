@@ -17,16 +17,16 @@ export const deleteRecipe = async(req:Request, res:Response):Promise<void> => {
 
         const user = await selectById(authentication.id)
 
-        const recipe = await selectRecipeById(id)
 
         if(!authentication) {
             res.statusCode = 401
             throw new Error("Não autorizado.")
         }
 
-        console.log(id, user.id)
 
         if(user.role === "NORMAL") {
+
+            const recipe = await selectRecipeById(id)
 
             if(user.id !== recipe.userId) {
                 res.statusCode = 401

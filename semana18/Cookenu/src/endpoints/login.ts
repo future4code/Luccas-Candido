@@ -43,6 +43,7 @@ export const login = async(req:Request, res:Response):Promise<void> => {
         res.status(200).send({message,
         token})
         
+        
     } catch (error) {
 
         let {message} = error
@@ -52,11 +53,8 @@ export const login = async(req:Request, res:Response):Promise<void> => {
             message = "Usuário não cadastrado"
         }
 
-
-
         res.send(message)
-
-        
+   
     }
 
 }
