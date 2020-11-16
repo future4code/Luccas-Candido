@@ -5,17 +5,15 @@ import {generateToken} from "../../services/authenticator"
 
 
 export const createUserBusiness = 
-async(input:any):Promise<string> => {
+async(input:any) => {
 
 
     try {
 
         if(!input.name ||
             !input.email ||
-            !input.nickname ||
-            !input.password||
-            !input.role) {
-                throw new Error("Preencha os campos 'name', 'nickname', 'password' e 'email'.")
+            !input.password) {
+                throw new Error("Preencha os campos 'name', 'password' e 'email'.")
             }
 
         if(input.email.indexOf("@") === -1) {
@@ -35,7 +33,6 @@ async(input:any):Promise<string> => {
             id,
             input.name,
             input.email,
-            input.nickname,
             cypherPassword,
             input.role
         )
@@ -44,15 +41,8 @@ async(input:any):Promise<string> => {
 
         return token
 
-
-
     } catch(error) {
-        if(error.code === 1048) {
-            throw new Error("Este usuário já existe.")
-        }
-
+        throw new Error(error.message)
     }
-
-    return "ok"
 
 }
