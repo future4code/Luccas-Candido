@@ -1,24 +1,24 @@
 import { Post } from "../model/Post"
-import {connection} from "./connection"
-import UserDatabase from "./UserDatabase"
+import BaseDatabase from "./BaseDatabase"
 
 
-class PostDatabase {
+class PostDatabase extends BaseDatabase{
 
-    private tableName:string = "labook_posts"
+    private static tableName:string = "labook_posts"
 
     public createPost = async(post:Post):Promise<any> => {
 
         try {
 
-        await connection(this.tableName)
+        await BaseDatabase.connection
         .insert({
            id:post.getId(),
            photo: post.getPhoto(),
            description: post.getDescription(),
            type: post.getType(),
-           author_id: post.getAuthorId
+           author_id: post.getAuthorId()
         })
+        .into(PostDatabase.tableName)
 
 
         } catch(error) {
@@ -28,6 +28,32 @@ class PostDatabase {
 
     }
 
+
+    public getPostById = async(id:string):Promise<Post> => {
+
+        try {       
+
+        const result = await BaseDatabase.connection.raw(`
+        
+        SELECT * FROM ${PostDatabase.tableName} as post
+        WHERE post.id = "${id}"
+        `)
+
+        return new Post(
+            result[0][0].id,
+            result[0][0].photo,
+            result[0][0].description,
+            result[0][0].type,
+            result[0][0].createdAt,
+            result[0][0].author_id,
+
+        )
+
+        } catch(error) {
+            throw new Error(error.message || error.sqlMessage)
+        }
+
+    }
 }
 
 

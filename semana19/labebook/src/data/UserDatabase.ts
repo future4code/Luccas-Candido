@@ -1,12 +1,12 @@
 import { Post } from "../model/Post"
 import { User } from "../model/User"
-import {connection} from "./connection"
+import BaseDatabase from "./BaseDatabase"
 
-class UserDatabase {
+class UserDatabase extends BaseDatabase{
 
-    private tableName:string = "labook_users"
+    private static tableName:string = "labook_users"
 
-    public getTableName = ():string => this.tableName
+    public getTableName = ():string => UserDatabase.tableName
 
     public async signup(
         user:User
@@ -14,7 +14,7 @@ class UserDatabase {
 
         try {
 
-            await connection.insert({
+            await BaseDatabase.connection.insert({
                 id:user.getId(),
                 name: user.getName(),
                 email: user.getEmail(),
@@ -32,8 +32,8 @@ class UserDatabase {
 
         try {
 
-            const result = await connection.raw(`
-            SELECT * FROM labook_users as user
+            const result = await BaseDatabase.connection.raw(`
+            SELECT * FROM ${UserDatabase.tableName} as user
             WHERE user.email = "${email}"
             `)
     
@@ -51,6 +51,8 @@ class UserDatabase {
 
 
     }
+
+
 
 
 }

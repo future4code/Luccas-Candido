@@ -20,8 +20,10 @@ class UserController {
             res.status(201).send({message: "Usuário criado", token})
     
             
-        } catch (error) {
-            throw new Error(error.message || error.sqlMessage)
+        } catch(error) {
+            res.status(400).send({
+                message: error.message || error.sqlMessage
+            })
         }
 
     }
@@ -38,27 +40,15 @@ class UserController {
             let message = "Logged with success"
     
             const token = await UserBusiness.getUserByEmail(input)
-    
             
+        
             res.status(200).send({message, token})
     
-    
-            
-        } catch (error) {
-    
-            let { message } = error
-    
-          if(message === "Cannot read property 'id' of undefined"){
-             message = "Usuário não encontrado ou senha incorreta"
-             res.statusCode = 404
-          }
-          
-          if(message === "Field 'name' doesn't have a default value"){
-             message = "Insira um nome para seu usuário"
-             res.statusCode = 406
-          }
-    
-          res.send({message})
+
+        } catch(error) {
+            res.status(400).send({
+                message: error.message || error.sqlMessage
+            })
         }
 
     }

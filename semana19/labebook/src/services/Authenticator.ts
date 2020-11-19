@@ -10,7 +10,7 @@ class Authenticator {
     public generateToken = (payload:AuthenticationData) => {
         return jwt.sign(
             payload,
-            process.env.JWT_KET as string,
+            process.env.JWT_KEY as string,
             {
                 expiresIn: "24min"
             }

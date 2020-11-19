@@ -7,7 +7,7 @@ import idGenerator from "../services/idGenerator";
 
 class PostBusiness {
 
-    public createPost = async(input:PostInput, token:string):Promise<any> => {
+    public createPost = async(input:PostInput, token:string) => {
         
 
         try {
@@ -42,6 +42,23 @@ class PostBusiness {
             throw new Error(error.message || error.sqlMessage)
         }
 
+    }
+
+    public getPostById = async(input:any, token:string):Promise<Post> => {
+
+        const authentication:AuthenticationData = Authenticator.getData(token)
+
+        if(!authentication) {
+            throw new Error("Unauthorized")
+        }
+
+        const post:Post = await PostDatabase.getPostById(input.id)
+
+        if(!post) {
+            throw new Error("Post doest not exist")
+        }
+
+        return post
     }
 
 }
