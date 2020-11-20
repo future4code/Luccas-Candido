@@ -6,4 +6,7 @@ export const postRouter = express.Router()
 
 postRouter.post("/create", PostController.createPost)
 
-postRouter.get("/:id", PostController.getPostById)
+// postRouter.get("/:id", PostController.getPostById)
+
+postRouter.get("/feed", PostController.getFeed) 
+

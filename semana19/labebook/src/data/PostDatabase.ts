@@ -54,6 +54,22 @@ class PostDatabase extends BaseDatabase{
         }
 
     }
+
+
+    public getFeed = async(userId:string) => {
+
+        const result = await BaseDatabase.connection.raw(`
+        SELECT post.author_id, post.photo, post.description, friendship.friend_id, friendship.user_id 
+        FROM labook_posts as post
+        JOIN Relation_Friendship as friendship
+        ON post.author_id = friendship.friend_id
+        WHERE friendship.user_id = "${userId}";
+        
+        `)
+
+        return result[0]
+
+    }
 }
 
 

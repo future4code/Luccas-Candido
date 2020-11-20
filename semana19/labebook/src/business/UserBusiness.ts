@@ -1,7 +1,8 @@
 import { hash } from "bcryptjs"
 import UserDatabase from "../data/UserDatabase"
 import { CreateUserInput, User } from "../model/User"
-import Authenticator from "../services/Authenticator"
+import Authenticator, { AuthenticationData } from "../services/Authenticator"
+import { CustomError } from "../services/CustomError"
 import hashManager from "../services/hashManager"
 import IdGenerator from "../services/idGenerator"
 
@@ -45,7 +46,15 @@ class UserBusiness {
                 
       
          } catch(error) {
-            throw new Error(error.message)
+
+            let{ message } = error
+
+            if(message.includes("Duplicate")) {
+                throw new CustomError(409, "E-mail já cadastrado")
+            }
+            
+            throw new Error(error.sqlMessage || error.message)
+
          }
 
     }
@@ -78,6 +87,83 @@ class UserBusiness {
             throw new Error(error.message)
         }
     }
+
+    public userFriendship = async(input:any, token:string):Promise<any> => {
+
+            try {
+
+                const authentication:AuthenticationData = Authenticator.getData(token)
+
+                const userId = authentication.id
+
+
+                if(!input.id) {
+                    throw new Error("Invalid user")
+
+                } else if (input.id === authentication.id) {
+                    throw new Error("You cant do this.")
+                }
+
+                if(!authentication) {
+                    throw new Error("Invalid token")
+                }
+
+                await UserDatabase.userFriendship(userId, input.id)
+                await UserDatabase.userFriendship(input.id, userId)
+
+                return
+
+        } catch(error) {
+
+            let {message} = error
+
+            if (message === "jwt expired") {
+                throw new CustomError(401, "Unauthorized")
+            }
+
+            if(message.includes("Duplicate entry")) {
+                throw new CustomError(409, "You already follow this user")
+            } 
+
+            throw new CustomError(400, error.sqlMessage || error.message)
+            
+        }
+
+    }
+
+    public deleteFriendship = async(input:any, token:string):Promise<any> => {
+
+        try {
+
+            const authentication:AuthenticationData = Authenticator.getData(token)
+
+            const userId = authentication.id
+
+            if(!input.userToUnfollow) {
+                throw new CustomError(400, "Invalid user or invalid field")
+            }
+
+            if(!authentication) {
+                throw new CustomError(401, "Invalid token")
+            }
+
+            await UserDatabase.deleteFriendship(userId, input.userToUnfollow)
+            await UserDatabase.deleteFriendship(input.userToUnfollow, userId)
+
+            return
+
+
+        } catch(error) {
+    
+
+            throw new CustomError(400, error.sqlMessage || error.message)
+
+        }
+
+    }
+
+
+
 
 }
 

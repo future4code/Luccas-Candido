@@ -6,8 +6,6 @@ class UserDatabase extends BaseDatabase{
 
     private static tableName:string = "labook_users"
 
-    public getTableName = ():string => UserDatabase.tableName
-
     public async signup(
         user:User
         ) {
@@ -20,7 +18,7 @@ class UserDatabase extends BaseDatabase{
                 email: user.getEmail(),
                 password: user.getPassword()            
             })
-            .into(this.getTableName)
+            .into(UserDatabase.tableName)
     
         } catch(error) {
             throw new Error(error.message || error.sqlMessage)
@@ -53,6 +51,29 @@ class UserDatabase extends BaseDatabase{
     }
 
 
+    public userFriendship = async(userId:string, friendId:string) => {
+
+        const result = await BaseDatabase.connection
+        .insert({
+            user_id: userId,
+            friend_id: friendId
+        })
+        .into("Relation_Friendship")
+
+        return result
+
+    }
+
+    public deleteFriendship = async(userId:string, friendId:string) => {
+
+        const result = await BaseDatabase.connection.raw(`
+        DELETE FROM Relation_Friendship
+        WHERE user_id = "${userId}" AND friend_id = "${friendId}"
+        
+        `)
+
+        return result
+    }
 
 
 }
