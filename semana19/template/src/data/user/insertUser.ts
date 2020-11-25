@@ -20,7 +20,7 @@ role:USER_ROLES) => {
         .into('Aula_Arquitetura')
 
     } catch(error) {
-        throw new Error(error.sqlMessage)
+        throw new Error(error.sqlMessage || error.message)
     }
 
 }
