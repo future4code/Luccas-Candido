@@ -17,6 +17,9 @@ export const getAllRecipes = async(req:Request, res:Response):Promise<void> => {
             throw new Error("Usuário não autorizado.")
         }
 
+        
+
+
         const recipes = await selectAllRecipes(authentication.id)
 
         if(!recipes) {

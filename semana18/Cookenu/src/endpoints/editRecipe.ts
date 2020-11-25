@@ -29,7 +29,6 @@ export const editRecipe = async(req:Request, res:Response):Promise<void> => {
         const user = await selectById(authentication.id)
         const recipe = await selectRecipeById(id)
 
-        console.log(user.id, recipe.userId)
 
         if(user.id !== recipe.userId) {
             res.statusCode = 401
